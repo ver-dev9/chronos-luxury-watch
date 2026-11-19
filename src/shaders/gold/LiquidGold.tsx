@@ -52,7 +52,15 @@ export function LiquidGold() {
   return (
     <mesh ref={mesh} frustumCulled={false} renderOrder={999}>
       <planeGeometry args={[2, 2]} />
-      <shaderMaterial ref={ref} vertexShader={vertex} fragmentShader={fragment} uniforms={uniforms} transparent depthTest={false} depthWrite={false} />
+      <shaderMaterial
+        ref={ref}
+        vertexShader={vertex}
+        fragmentShader={fragment}
+        uniforms={uniforms}
+        transparent
+        depthTest={false}
+        depthWrite={false}
+      />
     </mesh>
   );
 }

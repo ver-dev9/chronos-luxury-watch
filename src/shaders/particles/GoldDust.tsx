@@ -68,7 +68,15 @@ interface Props {
   color?: string;
 }
 
-export function GoldDust({ count, radius = 6, height = 6, size = 26, reveal, flow = 0, color = '#e4c88d' }: Props) {
+export function GoldDust({
+  count,
+  radius = 6,
+  height = 6,
+  size = 26,
+  reveal,
+  flow = 0,
+  color = '#e4c88d',
+}: Props) {
   const mat = useRef<THREE.ShaderMaterial>(null);
   const { camera } = useThree();
   const geometry = useMemo(() => {
@@ -120,7 +128,15 @@ export function GoldDust({ count, radius = 6, height = 6, size = 26, reveal, flo
 
   return (
     <points geometry={geometry} frustumCulled={false}>
-      <shaderMaterial ref={mat} vertexShader={vertex} fragmentShader={fragment} uniforms={uniforms} transparent depthWrite={false} blending={THREE.AdditiveBlending} />
+      <shaderMaterial
+        ref={mat}
+        vertexShader={vertex}
+        fragmentShader={fragment}
+        uniforms={uniforms}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
     </points>
   );
 }

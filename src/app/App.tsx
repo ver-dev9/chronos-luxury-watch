@@ -75,14 +75,21 @@ export default function App() {
 
   return (
     <>
-      <a href="#chapter-collections" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:bg-ink focus:p-3 focus:text-gold">
+      <a
+        href="#chapter-collections"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:bg-ink focus:p-3 focus:text-gold"
+      >
         Skip the introduction
       </a>
       <Loader progress={webgl ? progress : 100} done={loaded || !webgl} />
       {webgl && fontsReady && <Experience onReady={onReady} />}
       {!webgl && <NoWebGL onReady={setLoaded} />}
       <div className="vignette-css pointer-events-none fixed inset-0 z-[1]" aria-hidden="true" />
-      <div id="transition-dip" className="pointer-events-none fixed inset-0 z-[2] bg-ink opacity-0" aria-hidden="true" />
+      <div
+        id="transition-dip"
+        className="pointer-events-none fixed inset-0 z-[2] bg-ink opacity-0"
+        aria-hidden="true"
+      />
       <Nav />
       <Cursor />
       <ScrollProgress />
@@ -107,7 +114,10 @@ function NoWebGL({ onReady }: { onReady: () => void }) {
   useEffect(onReady, [onReady]);
   return (
     <div className="fixed inset-0 z-0 grid place-items-center bg-ink p-8 text-center">
-      <p className="max-w-md text-sm text-muted">This exhibition is rendered in WebGL, which isn’t available in this browser. The story and text remain fully readable as you scroll.</p>
+      <p className="max-w-md text-sm text-muted">
+        This exhibition is rendered in WebGL, which isn’t available in this browser. The story and text remain
+        fully readable as you scroll.
+      </p>
     </div>
   );
 }

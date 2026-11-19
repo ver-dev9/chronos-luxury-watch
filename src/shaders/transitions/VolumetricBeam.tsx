@@ -26,10 +26,22 @@ void main(){
 }
 `;
 
-export function VolumetricBeam({ position = [0, 4, 0] as [number, number, number], rotation = [0, 0, 0] as [number, number, number], length = 8, radius = 2.4, intensity = 1, color = '#e4c88d' }) {
+export function VolumetricBeam({
+  position = [0, 4, 0] as [number, number, number],
+  rotation = [0, 0, 0] as [number, number, number],
+  length = 8,
+  radius = 2.4,
+  intensity = 1,
+  color = '#e4c88d',
+}) {
   const ref = useRef<THREE.ShaderMaterial>(null);
   const uniforms = useMemo(
-    () => ({ uTime: { value: 0 }, uIntensity: { value: intensity }, uColor: { value: new THREE.Color(color) }, uLength: { value: length } }),
+    () => ({
+      uTime: { value: 0 },
+      uIntensity: { value: intensity },
+      uColor: { value: new THREE.Color(color) },
+      uLength: { value: length },
+    }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
@@ -42,7 +54,16 @@ export function VolumetricBeam({ position = [0, 4, 0] as [number, number, number
   return (
     <mesh position={position} rotation={rotation}>
       <coneGeometry args={[radius, length, 48, 1, true]} />
-      <shaderMaterial ref={ref} vertexShader={vertex} fragmentShader={fragment} uniforms={uniforms} transparent depthWrite={false} side={THREE.DoubleSide} blending={THREE.AdditiveBlending} />
+      <shaderMaterial
+        ref={ref}
+        vertexShader={vertex}
+        fragmentShader={fragment}
+        uniforms={uniforms}
+        transparent
+        depthWrite={false}
+        side={THREE.DoubleSide}
+        blending={THREE.AdditiveBlending}
+      />
     </mesh>
   );
 }

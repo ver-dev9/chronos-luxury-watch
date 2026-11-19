@@ -2,14 +2,23 @@ import { forwardRef, useEffect, useState, type ReactNode } from 'react';
 import { CHAPTERS, type ChapterId } from '../../data/chapters';
 
 /** A chapter: a tall scroll track with a pinned, full-viewport stage. */
-export const Section = forwardRef<HTMLDivElement, { id: ChapterId; label: string; children: ReactNode; className?: string }>(function Section(
-  { id, label, children, className = '' },
-  ref,
-) {
+export const Section = forwardRef<
+  HTMLDivElement,
+  { id: ChapterId; label: string; children: ReactNode; className?: string }
+>(function Section({ id, label, children, className = '' }, ref) {
   const c = CHAPTERS.find((x) => x.id === id)!;
   return (
-    <section id={`chapter-${id}`} aria-label={label} className="relative" style={{ height: `${c.length * 100}vh` }}>
-      <div ref={ref} data-stage className={`pointer-events-none relative h-[100svh] w-full overflow-hidden ${className}`}>
+    <section
+      id={`chapter-${id}`}
+      aria-label={label}
+      className="relative"
+      style={{ height: `${c.length * 100}vh` }}
+    >
+      <div
+        ref={ref}
+        data-stage
+        className={`pointer-events-none relative h-[100svh] w-full overflow-hidden ${className}`}
+      >
         {children}
       </div>
     </section>

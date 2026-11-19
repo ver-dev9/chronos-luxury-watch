@@ -3,14 +3,7 @@
  * WatchModel turns a spec into real geometry, so each collection piece
  * differs in case, bezel, dial, hands, strap and mechanics — not only text.
  */
-export type CaseMaterial =
-  | 'gold'
-  | 'roseGold'
-  | 'steel'
-  | 'titanium'
-  | 'ceramic'
-  | 'carbon'
-  | 'platinum';
+export type CaseMaterial = 'gold' | 'roseGold' | 'steel' | 'titanium' | 'ceramic' | 'carbon' | 'platinum';
 export type CaseShape = 'round' | 'cushion' | 'octagon';
 export type BezelStyle = 'smooth' | 'fluted' | 'tachymeter' | 'gem' | 'screwed';
 export type DialStyle = 'sunburst' | 'guilloche' | 'skeleton' | 'enamel' | 'carbon';

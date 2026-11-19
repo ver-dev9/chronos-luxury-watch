@@ -37,7 +37,13 @@ export function useChapterTriggers(enabled: boolean) {
       const stage = el.querySelector<HTMLElement>('[data-stage]');
       const pin =
         stage && c.length > 1
-          ? ScrollTrigger.create({ trigger: el, start: 'top top', end: 'bottom bottom', pin: stage, pinSpacing: false })
+          ? ScrollTrigger.create({
+              trigger: el,
+              start: 'top top',
+              end: 'bottom bottom',
+              pin: stage,
+              pinSpacing: false,
+            })
           : null;
       return [progress, active, ...(pin ? [pin] : [])];
     });

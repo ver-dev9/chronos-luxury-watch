@@ -56,12 +56,23 @@ function Showcase() {
             </div>
           ))}
         </dl>
-        <p className="mt-6 text-[10px] uppercase tracking-[0.25em] text-muted/70">Drag the watch to inspect it.</p>
+        <p className="mt-6 text-[10px] uppercase tracking-[0.25em] text-muted/70">
+          Drag the watch to inspect it.
+        </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <button ref={closeRef} className="btn-luxe" onClick={() => setShowcase(false)} tabIndex={open ? 0 : -1}>
+          <button
+            ref={closeRef}
+            className="btn-luxe"
+            onClick={() => setShowcase(false)}
+            tabIndex={open ? 0 : -1}
+          >
             Return to gallery
           </button>
-          <button className="chip" tabIndex={open ? 0 : -1} onClick={() => useExperience.getState().setActiveCollection((i + 1) % COLLECTIONS.length)}>
+          <button
+            className="chip"
+            tabIndex={open ? 0 : -1}
+            onClick={() => useExperience.getState().setActiveCollection((i + 1) % COLLECTIONS.length)}
+          >
             Next piece →
           </button>
         </div>
@@ -78,7 +89,11 @@ export function CollectionsSection() {
     ref,
     (tl, q) => {
       tl.fromTo(q('[data-head]'), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.06 }, 0)
-        .to(q('[data-track]'), { xPercent: -((COLLECTIONS.length - 1) / COLLECTIONS.length) * 100, ease: 'none', duration: 1 }, 0)
+        .to(
+          q('[data-track]'),
+          { xPercent: -((COLLECTIONS.length - 1) / COLLECTIONS.length) * 100, ease: 'none', duration: 1 },
+          0,
+        )
         .to(q('[data-head]'), { opacity: 0, duration: 0.06 }, 0.94);
     },
     { scrub: 0.4 },
@@ -86,11 +101,18 @@ export function CollectionsSection() {
 
   return (
     <Section id="collections" label="The Collection" ref={ref}>
-      <div data-head className={`absolute left-6 top-24 transition-opacity duration-500 md:left-12 md:top-28 ${showcase ? 'opacity-0' : ''}`}>
+      <div
+        data-head
+        className={`absolute left-6 top-24 transition-opacity duration-500 md:left-12 md:top-28 ${showcase ? 'opacity-0' : ''}`}
+      >
         <div className="eyebrow">02 — The Collection</div>
         <h2 className="display mt-3 text-4xl text-ivory md:text-6xl">Four houses of time</h2>
       </div>
-      <div data-track className={`absolute inset-y-0 left-0 flex transition-opacity duration-500 ${showcase ? 'opacity-0' : 'opacity-100'}`} style={{ width: `${COLLECTIONS.length * 100}vw` }}>
+      <div
+        data-track
+        className={`absolute inset-y-0 left-0 flex transition-opacity duration-500 ${showcase ? 'opacity-0' : 'opacity-100'}`}
+        style={{ width: `${COLLECTIONS.length * 100}vw` }}
+      >
         {COLLECTIONS.map((c, i) => (
           <article key={c.id} className="relative h-full w-screen" aria-label={c.name}>
             <div className="absolute bottom-24 left-6 max-w-[88vw] md:bottom-[14vh] md:left-12 md:max-w-[360px]">
@@ -116,9 +138,16 @@ export function CollectionsSection() {
           </article>
         ))}
       </div>
-      <div className={`absolute bottom-10 right-6 hidden items-center gap-3 md:right-14 md:flex ${showcase ? 'opacity-0' : ''}`}>
+      <div
+        className={`absolute bottom-10 right-6 hidden items-center gap-3 md:right-14 md:flex ${showcase ? 'opacity-0' : ''}`}
+      >
         {COLLECTIONS.map((c, i) => (
-          <button key={c.id} className="pointer-events-auto text-[10px] tracking-[0.3em] text-muted hover:text-ivory" onClick={() => scrollToCollection(i)} aria-label={`Go to ${c.name}`}>
+          <button
+            key={c.id}
+            className="pointer-events-auto text-[10px] tracking-[0.3em] text-muted hover:text-ivory"
+            onClick={() => scrollToCollection(i)}
+            aria-label={`Go to ${c.name}`}
+          >
             {ROMAN[i]}
           </button>
         ))}

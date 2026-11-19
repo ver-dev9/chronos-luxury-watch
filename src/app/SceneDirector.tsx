@@ -25,10 +25,28 @@ const SCENES: Record<ChapterId, LazyExoticComponent<ComponentType>> = {
 };
 
 /** Boundaries that use the liquid-gold transition (art-directed, not everywhere). */
-const GOLD = new Set(['materials>time', 'time>materials', 'craftsmanship>finale', 'finale>craftsmanship', 'intro>collections', 'collections>intro']);
+const GOLD = new Set([
+  'materials>time',
+  'time>materials',
+  'craftsmanship>finale',
+  'finale>craftsmanship',
+  'intro>collections',
+  'collections>intro',
+]);
 
 /** Preload neighbouring chapter chunks so swaps never wait on the network. */
-const ORDER: ChapterId[] = ['intro', 'collections', 'exploded', 'movement', 'materials', 'time', 'configurator', 'signature', 'craftsmanship', 'finale'];
+const ORDER: ChapterId[] = [
+  'intro',
+  'collections',
+  'exploded',
+  'movement',
+  'materials',
+  'time',
+  'configurator',
+  'signature',
+  'craftsmanship',
+  'finale',
+];
 const loaders: Record<ChapterId, () => Promise<unknown>> = {
   intro: () => import('../scenes/intro/IntroScene'),
   collections: () => import('../scenes/collections/CollectionsScene'),
@@ -67,13 +85,20 @@ export function SceneDirector() {
     if (GOLD.has(`${displayed}>${chapter}`)) {
       const tl = gsap.timeline();
       veil.current = 0;
-      tl.to(veil, { current: 0.5, duration: 0.55, ease: 'power2.in', onComplete: swap }).to(veil, { current: 1, duration: 0.7, ease: 'power2.out' }).set(veil, { current: 0 });
+      tl.to(veil, { current: 0.5, duration: 0.55, ease: 'power2.in', onComplete: swap })
+        .to(veil, { current: 1, duration: 0.7, ease: 'power2.out' })
+        .set(veil, { current: 0 });
       return () => {
         tl.progress(1).kill();
       };
     }
     const tl = gsap.timeline();
-    tl.to(dip, { opacity: 1, duration: 0.28, ease: 'power2.in', onComplete: swap }).to(dip, { opacity: 0, duration: 0.5, ease: 'power2.out', delay: 0.05 });
+    tl.to(dip, { opacity: 1, duration: 0.28, ease: 'power2.in', onComplete: swap }).to(dip, {
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.out',
+      delay: 0.05,
+    });
     return () => {
       tl.progress(1).kill();
     };

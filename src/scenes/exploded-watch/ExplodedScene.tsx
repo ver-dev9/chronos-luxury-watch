@@ -19,16 +19,20 @@ export default function ExplodedScene() {
   const explode = useRef(0);
   const group = useRef<THREE.Group>(null);
 
-  useCameraRig((prog, t, out) => {
-    // 0–0.15 camera approaches; then swings to an oblique 3/4 view of the stack
-    const a = range(prog, 0, 0.18);
-    const swing = range(prog, 0.12, 0.6);
-    const ang = THREE.MathUtils.lerp(0, 1.05, swing) + Math.sin(t * 0.15) * 0.04;
-    const dist = THREE.MathUtils.lerp(9, 6.2, a) + swing * 4.2;
-    out.pos.set(Math.sin(ang) * dist, 0.6 + swing * 1.4, Math.cos(ang) * dist);
-    out.look.set(0, 0, swing * 0.1);
-    out.fov = 30 + swing * 4;
-  }, p, 3);
+  useCameraRig(
+    (prog, t, out) => {
+      // 0–0.15 camera approaches; then swings to an oblique 3/4 view of the stack
+      const a = range(prog, 0, 0.18);
+      const swing = range(prog, 0.12, 0.6);
+      const ang = THREE.MathUtils.lerp(0, 1.05, swing) + Math.sin(t * 0.15) * 0.04;
+      const dist = THREE.MathUtils.lerp(9, 6.2, a) + swing * 4.2;
+      out.pos.set(Math.sin(ang) * dist, 0.6 + swing * 1.4, Math.cos(ang) * dist);
+      out.look.set(0, 0, swing * 0.1);
+      out.fov = 30 + swing * 4;
+    },
+    p,
+    3,
+  );
 
   useFrame((_, dt) => {
     const s = useExperience.getState();

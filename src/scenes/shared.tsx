@@ -57,7 +57,17 @@ export function useCameraRig(
 }
 
 /** Applies drag rotation (and an optional hover tilt) to its children. */
-export function DragRotate({ children, hover = 0.25, autoSpin = 0, enabled = true }: { children: ReactNode; hover?: number; autoSpin?: number; enabled?: boolean }) {
+export function DragRotate({
+  children,
+  hover = 0.25,
+  autoSpin = 0,
+  enabled = true,
+}: {
+  children: ReactNode;
+  hover?: number;
+  autoSpin?: number;
+  enabled?: boolean;
+}) {
   const g = useRef<THREE.Group>(null);
   const spin = useRef(0);
   const reduced = useExperience((s) => s.reducedMotion);
@@ -73,7 +83,17 @@ export function DragRotate({ children, hover = 0.25, autoSpin = 0, enabled = tru
 }
 
 /** Cinematic three-point lighting with quality-scaled shadows. */
-export function StudioLights({ keyLight = 1, rim = 1, fill = 0.25, shadowY = -1.6 }: { keyLight?: number; rim?: number; fill?: number; shadowY?: number }) {
+export function StudioLights({
+  keyLight = 1,
+  rim = 1,
+  fill = 0.25,
+  shadowY = -1.6,
+}: {
+  keyLight?: number;
+  rim?: number;
+  fill?: number;
+  shadowY?: number;
+}) {
   const quality = useExperience((s) => s.quality);
   const size = quality === 'high' ? 1024 : 512;
   return (
@@ -90,7 +110,14 @@ export function StudioLights({ keyLight = 1, rim = 1, fill = 0.25, shadowY = -1.
         shadow-bias={-0.0004}
         decay={2}
       />
-      <spotLight position={[-5, 2.5, -4]} angle={0.5} penumbra={1} intensity={90 * rim} color="#e4c88d" decay={2} />
+      <spotLight
+        position={[-5, 2.5, -4]}
+        angle={0.5}
+        penumbra={1}
+        intensity={90 * rim}
+        color="#e4c88d"
+        decay={2}
+      />
       <directionalLight position={[-3, -2, 4]} intensity={fill} color="#a8b4ff" />
       {quality !== 'low' && shadowY !== 0 && (
         <mesh rotation-x={-Math.PI / 2} position={[0, shadowY, 0]} receiveShadow>

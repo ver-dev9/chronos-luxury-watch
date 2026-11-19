@@ -17,18 +17,40 @@ interface Props extends Partial<GearOpts> {
 }
 
 /** A single procedural gear wheel driven by the shared mechanism clock. */
-export function Gear({ teeth, radius, thickness = 0.025, spokes = 5, hole = 0.02, position = [0, 0, 0], material = 'brass', drive, pinion, castShadow = true }: Props) {
+export function Gear({
+  teeth,
+  radius,
+  thickness = 0.025,
+  spokes = 5,
+  hole = 0.02,
+  position = [0, 0, 0],
+  material = 'brass',
+  drive,
+  pinion,
+  castShadow = true,
+}: Props) {
   const ref = useRef<THREE.Group>(null);
   useFrame((s) => {
     if (ref.current && drive) ref.current.rotation.z = drive(s.clock.elapsedTime);
   });
   return (
     <group ref={ref} position={position}>
-      <mesh geometry={gearGeometry({ teeth, radius, thickness, spokes, hole })} material={mat(material)} castShadow={castShadow} receiveShadow />
+      <mesh
+        geometry={gearGeometry({ teeth, radius, thickness, spokes, hole })}
+        material={mat(material)}
+        castShadow={castShadow}
+        receiveShadow
+      />
       {pinion && (
         <mesh
           position={[0, 0, -thickness * 1.6]}
-          geometry={gearGeometry({ teeth: pinion, radius: radius * 0.22, thickness: thickness * 1.6, spokes: 0, hole })}
+          geometry={gearGeometry({
+            teeth: pinion,
+            radius: radius * 0.22,
+            thickness: thickness * 1.6,
+            spokes: 0,
+            hole,
+          })}
           material={mat('rhodium')}
         />
       )}

@@ -27,7 +27,12 @@ export function Experience({ onReady }: { onReady: () => void }) {
         dpr={DPR[quality]}
         shadows={quality !== 'low' ? 'soft' : false}
         camera={{ fov: 32, near: 0.05, far: 120, position: [0, 0, 9] }}
-        gl={{ antialias: quality !== 'high', powerPreference: 'high-performance', alpha: false, stencil: false }}
+        gl={{
+          antialias: quality !== 'high',
+          powerPreference: 'high-performance',
+          alpha: false,
+          stencil: false,
+        }}
         onCreated={({ gl, scene }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.toneMappingExposure = 1.05;

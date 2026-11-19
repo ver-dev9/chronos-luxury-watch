@@ -27,7 +27,9 @@ function Exhibit({ index }: { index: number }) {
   useFrame((state, dt) => {
     const active = useExperience.getState().activeSignature === index;
     if (!g.current) return;
-    const ty = active ? scrollState.drag.y + scrollState.pointer.x * 0.4 - 0.3 * side : state.clock.elapsedTime * 0.15 + index;
+    const ty = active
+      ? scrollState.drag.y + scrollState.pointer.x * 0.4 - 0.3 * side
+      : state.clock.elapsedTime * 0.15 + index;
     g.current.rotation.y = damp(g.current.rotation.y, ty, 3, dt);
     g.current.rotation.x = damp(g.current.rotation.x, active ? scrollState.drag.x * 0.6 - 0.2 : -0.2, 3, dt);
     g.current.position.y = 0.55 + Math.sin(state.clock.elapsedTime * 0.8 + index) * 0.06;
@@ -39,7 +41,16 @@ function Exhibit({ index }: { index: number }) {
   return (
     <group position={[index * GAP, 0, side * 0.6]}>
       <primitive object={target.current} />
-      <spotLight ref={spot} position={[0, 7, 1.5]} angle={0.3} penumbra={0.6} color="#fff0d2" decay={2} castShadow={useExperience.getState().quality === 'high'} shadow-mapSize={[512, 512]} />
+      <spotLight
+        ref={spot}
+        position={[0, 7, 1.5]}
+        angle={0.3}
+        penumbra={0.6}
+        color="#fff0d2"
+        decay={2}
+        castShadow={useExperience.getState().quality === 'high'}
+        shadow-mapSize={[512, 512]}
+      />
       <VolumetricBeam position={[0, 4.2, 0.2]} length={7} radius={1.4} intensity={0.6} />
       <group ref={g} scale={0.72}>
         <WatchModel spec={SIGNATURE[index].spec} />
@@ -58,14 +69,21 @@ function Exhibit({ index }: { index: number }) {
 export default function SignatureScene() {
   const p = useProgress('signature', 3.5);
   const setActive = useExperience((s) => s.setActiveSignature);
-  useCameraRig((prog, t, out) => {
-    const x = prog * (SIGNATURE.length - 1) * GAP;
-    out.pos.set(x + 1.4, 1.1 + Math.sin(t * 0.2) * 0.08, 11.5);
-    out.look.set(x + 0.2, -0.4, 0);
-    out.fov = 30;
-  }, p, 2.6);
+  useCameraRig(
+    (prog, t, out) => {
+      const x = prog * (SIGNATURE.length - 1) * GAP;
+      out.pos.set(x + 1.4, 1.1 + Math.sin(t * 0.2) * 0.08, 11.5);
+      out.look.set(x + 0.2, -0.4, 0);
+      out.fov = 30;
+    },
+    p,
+    2.6,
+  );
   useFrame(() => {
-    const i = Math.max(0, Math.min(SIGNATURE.length - 1, Math.round(scrollState.progress.signature * (SIGNATURE.length - 1))));
+    const i = Math.max(
+      0,
+      Math.min(SIGNATURE.length - 1, Math.round(scrollState.progress.signature * (SIGNATURE.length - 1))),
+    );
     setActive(i);
     dofFocus.set(i * GAP, 0, i % 2 === 0 ? 0.6 : -0.6);
   });

@@ -28,7 +28,14 @@ export function Dial({ spec, size = 1024 }: { spec: WatchSpec; size?: number }) 
     [spec.dial, spec.dialColor, spec.markers, spec.subdials, size],
   );
   const material = useMemo(
-    () => new THREE.MeshPhysicalMaterial({ map: tex, roughness: spec.dial === 'enamel' ? 0.08 : 0.32, metalness: spec.dial === 'enamel' ? 0 : 0.55, clearcoat: spec.dial === 'enamel' || spec.dial === 'carbon' ? 1 : 0.2, envMapIntensity: 0.9 }),
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        map: tex,
+        roughness: spec.dial === 'enamel' ? 0.08 : 0.32,
+        metalness: spec.dial === 'enamel' ? 0 : 0.55,
+        clearcoat: spec.dial === 'enamel' || spec.dial === 'carbon' ? 1 : 0.2,
+        envMapIntensity: 0.9,
+      }),
     [tex, spec.dial],
   );
   if (spec.skeleton) {
@@ -97,7 +104,9 @@ export function Markers({ spec }: { spec: WatchSpec }) {
               </mesh>
             ) : (
               <mesh material={mat(matKey)} castShadow>
-                <boxGeometry args={[big && i === 0 ? 0.07 : 0.035, kind === 'minimal' ? 0.07 : big ? 0.13 : 0.1, 0.02]} />
+                <boxGeometry
+                  args={[big && i === 0 ? 0.07 : 0.035, kind === 'minimal' ? 0.07 : big ? 0.13 : 0.1, 0.02]}
+                />
               </mesh>
             )}
             {kind !== 'gem' && kind !== 'minimal' && (

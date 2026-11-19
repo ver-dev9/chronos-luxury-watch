@@ -12,7 +12,14 @@ export function WatchHands({ spec, frozen = false }: { spec: WatchSpec; frozen?:
   const s = useRef<THREE.Group>(null);
   const sub = useRef<THREE.Group>(null);
   const style: HandStyle = spec.hands;
-  const matKey = spec.caseMaterial === 'roseGold' ? 'roseGold' : ['gold'].includes(spec.caseMaterial) ? 'gold' : spec.dialColor === 'ivory' || spec.dialColor === 'champagne' ? 'blued' : 'rhodium';
+  const matKey =
+    spec.caseMaterial === 'roseGold'
+      ? 'roseGold'
+      : ['gold'].includes(spec.caseMaterial)
+        ? 'gold'
+        : spec.dialColor === 'ivory' || spec.dialColor === 'champagne'
+          ? 'blued'
+          : 'rhodium';
 
   useFrame(() => {
     const d = frozen ? new Date(2026, 0, 1, 10, 9, 36) : new Date();
@@ -35,7 +42,11 @@ export function WatchHands({ spec, frozen = false }: { spec: WatchSpec; frozen?:
       </group>
       {!spec.subdials && (
         <group ref={s} position={[0, 0, 0.036]}>
-          <mesh geometry={handGeometry('needle', 0.76, 0.03)} material={mat(spec.dialColor === 'ivory' ? 'blued' : 'gold')} castShadow />
+          <mesh
+            geometry={handGeometry('needle', 0.76, 0.03)}
+            material={mat(spec.dialColor === 'ivory' ? 'blued' : 'gold')}
+            castShadow
+          />
         </group>
       )}
       {spec.subdials && (

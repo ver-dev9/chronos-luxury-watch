@@ -30,14 +30,80 @@ interface Preset {
 }
 
 const PRESETS: Record<string, Preset> = {
-  gold: { color: '#e9b964', metalness: 1, roughness: 0.17, clearcoat: 0.3, transmission: 0, sheen: 0, ior: 1.5 },
-  titanium: { color: '#8d9096', metalness: 1, roughness: 0.42, clearcoat: 0, transmission: 0, sheen: 0, ior: 1.5 },
-  steel: { color: '#c8ccd2', metalness: 1, roughness: 0.22, clearcoat: 0, transmission: 0, sheen: 0, ior: 1.5 },
-  sapphire: { color: '#ffffff', metalness: 0, roughness: 0.03, clearcoat: 1, transmission: 1, sheen: 0, ior: 1.77 },
-  ceramic: { color: '#0c0c0e', metalness: 0, roughness: 0.16, clearcoat: 1, transmission: 0, sheen: 0, ior: 1.6 },
-  carbon: { color: '#ffffff', metalness: 0.25, roughness: 0.38, clearcoat: 1, transmission: 0, sheen: 0, ior: 1.5, map: 'carbon' },
-  leather: { color: '#5a3420', metalness: 0, roughness: 0.68, clearcoat: 0, transmission: 0, sheen: 0.8, ior: 1.4, bump: 'leather' },
-  gem: { color: '#e9b964', metalness: 1, roughness: 0.15, clearcoat: 0.3, transmission: 0, sheen: 0, ior: 1.5 },
+  gold: {
+    color: '#e9b964',
+    metalness: 1,
+    roughness: 0.17,
+    clearcoat: 0.3,
+    transmission: 0,
+    sheen: 0,
+    ior: 1.5,
+  },
+  titanium: {
+    color: '#8d9096',
+    metalness: 1,
+    roughness: 0.42,
+    clearcoat: 0,
+    transmission: 0,
+    sheen: 0,
+    ior: 1.5,
+  },
+  steel: {
+    color: '#c8ccd2',
+    metalness: 1,
+    roughness: 0.22,
+    clearcoat: 0,
+    transmission: 0,
+    sheen: 0,
+    ior: 1.5,
+  },
+  sapphire: {
+    color: '#ffffff',
+    metalness: 0,
+    roughness: 0.03,
+    clearcoat: 1,
+    transmission: 1,
+    sheen: 0,
+    ior: 1.77,
+  },
+  ceramic: {
+    color: '#0c0c0e',
+    metalness: 0,
+    roughness: 0.16,
+    clearcoat: 1,
+    transmission: 0,
+    sheen: 0,
+    ior: 1.6,
+  },
+  carbon: {
+    color: '#ffffff',
+    metalness: 0.25,
+    roughness: 0.38,
+    clearcoat: 1,
+    transmission: 0,
+    sheen: 0,
+    ior: 1.5,
+    map: 'carbon',
+  },
+  leather: {
+    color: '#5a3420',
+    metalness: 0,
+    roughness: 0.68,
+    clearcoat: 0,
+    transmission: 0,
+    sheen: 0.8,
+    ior: 1.4,
+    bump: 'leather',
+  },
+  gem: {
+    color: '#e9b964',
+    metalness: 1,
+    roughness: 0.15,
+    clearcoat: 0.3,
+    transmission: 0,
+    sheen: 0,
+    ior: 1.5,
+  },
 };
 
 const SPEC: WatchSpec = {
@@ -55,7 +121,13 @@ const GEM_SPEC: WatchSpec = { ...SPEC, bezel: 'gem', markers: 'gem' };
 /** A brilliant-cut gem built with a lathe profile and flat shading. */
 function Brilliant() {
   const geo = useMemo(() => {
-    const pts = [new THREE.Vector2(0, -0.6), new THREE.Vector2(0.5, -0.05), new THREE.Vector2(0.5, 0.02), new THREE.Vector2(0.3, 0.22), new THREE.Vector2(0, 0.22)];
+    const pts = [
+      new THREE.Vector2(0, -0.6),
+      new THREE.Vector2(0.5, -0.05),
+      new THREE.Vector2(0.5, 0.02),
+      new THREE.Vector2(0.3, 0.22),
+      new THREE.Vector2(0, 0.22),
+    ];
     const g = new THREE.LatheGeometry(pts, 16);
     return g.toNonIndexed();
   }, []);
@@ -94,19 +166,40 @@ function Specimen({ k }: { k: MatKey | 'brilliant' }) {
         </mesh>
       );
     case 'carbon':
-      return <RoundedBox args={[1.1, 1.1, 0.08]} radius={0.04} material={mat('carbon')} rotation={[0.3, 0.4, 0]} />;
+      return (
+        <RoundedBox args={[1.1, 1.1, 0.08]} radius={0.04} material={mat('carbon')} rotation={[0.3, 0.4, 0]} />
+      );
     case 'leatherBrown':
-      return <RoundedBox args={[0.9, 1.3, 0.06]} radius={0.03} material={mat('leatherBrown')} rotation={[0.2, 0.5, 0.1]} />;
+      return (
+        <RoundedBox
+          args={[0.9, 1.3, 0.06]}
+          radius={0.03}
+          material={mat('leatherBrown')}
+          rotation={[0.2, 0.5, 0.1]}
+        />
+      );
     default:
       return <Brilliant />;
   }
 }
 
-const SPECIMENS: (MatKey | 'brilliant')[] = ['gold', 'titanium', 'steel', 'sapphire', 'ceramic', 'carbon', 'leatherBrown', 'brilliant'];
+const SPECIMENS: (MatKey | 'brilliant')[] = [
+  'gold',
+  'titanium',
+  'steel',
+  'sapphire',
+  'ceramic',
+  'carbon',
+  'leatherBrown',
+  'brilliant',
+];
 
 export default function MaterialsScene() {
   const p = useProgress('materials', 3);
-  const caseMat = useMemo(() => new THREE.MeshPhysicalMaterial({ envMapIntensity: 1.25, thickness: 0.6 }), []);
+  const caseMat = useMemo(
+    () => new THREE.MeshPhysicalMaterial({ envMapIntensity: 1.25, thickness: 0.6 }),
+    [],
+  );
   const specimens = useRef<(THREE.Group | null)[]>([]);
   const gemWatch = useRef<THREE.Group>(null);
   const plainWatch = useRef<THREE.Group>(null);
@@ -118,13 +211,17 @@ export default function MaterialsScene() {
 
   useEffect(() => () => caseMat.dispose(), [caseMat]);
 
-  useCameraRig((prog, t, out) => {
-    const ang = prog * Math.PI * 2 * 1.0 + 0.4;
-    const r = 7.6 + Math.sin(prog * Math.PI * 8) * 0.5;
-    out.pos.set(Math.sin(ang) * r, 0.9 + Math.sin(t * 0.2) * 0.1, Math.cos(ang) * r);
-    out.look.set(0, 0, 0);
-    out.fov = 30;
-  }, p, 2.5);
+  useCameraRig(
+    (prog, t, out) => {
+      const ang = prog * Math.PI * 2 * 1.0 + 0.4;
+      const r = 7.6 + Math.sin(prog * Math.PI * 8) * 0.5;
+      out.pos.set(Math.sin(ang) * r, 0.9 + Math.sin(t * 0.2) * 0.1, Math.cos(ang) * r);
+      out.look.set(0, 0, 0);
+      out.fov = 30;
+    },
+    p,
+    2.5,
+  );
 
   useFrame((state, dt) => {
     const n = MATERIAL_STORIES.length;

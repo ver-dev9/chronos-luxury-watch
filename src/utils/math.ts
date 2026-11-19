@@ -6,7 +6,8 @@ export const smoothstep = (a: number, b: number, v: number) => {
   return t * t * (3 - 2 * t);
 };
 /** Frame-rate independent exponential damping. */
-export const damp = (current: number, target: number, lambda: number, dt: number) => THREE.MathUtils.damp(current, target, lambda, dt);
+export const damp = (current: number, target: number, lambda: number, dt: number) =>
+  THREE.MathUtils.damp(current, target, lambda, dt);
 export const range = (v: number, a: number, b: number) => clamp01((v - a) / (b - a));
 export const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 

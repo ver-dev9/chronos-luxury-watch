@@ -18,6 +18,11 @@ export function specFromConfig(c: Configuration): WatchSpec {
 export const CONFIG_LABELS = {
   caseMaterial: { gold: 'Gold', silver: 'Silver', titanium: 'Titanium', ceramic: 'Black Ceramic' },
   dial: { obsidian: 'Obsidian Black', champagne: 'Champagne', ivory: 'Ivory', midnight: 'Midnight Blue' },
-  strap: { leatherBlack: 'Black Leather', leatherBrown: 'Brown Leather', bracelet: 'Metallic Bracelet', titaniumLink: 'Dark Titanium' },
+  strap: {
+    leatherBlack: 'Black Leather',
+    leatherBrown: 'Brown Leather',
+    bracelet: 'Metallic Bracelet',
+    titaniumLink: 'Dark Titanium',
+  },
   markers: { gold: 'Gold Markers', silver: 'Silver Markers', minimal: 'Minimal Markers' },
 } as const;

@@ -25,29 +25,33 @@ export default function ConfiguratorScene() {
   const prog = useRef({ current: 0 }).current;
   const portrait = size.width < size.height;
 
-  useCameraRig((_p, t, out) => {
-    if (useExperience.getState().revealing) {
-      if (revealStart.current == null) revealStart.current = t;
-      const k = Math.min(1, (t - revealStart.current) / 5);
-      const ang = -0.9 + k * Math.PI * 1.15;
-      const r = 8 - Math.sin(k * Math.PI) * 3.2;
-      out.pos.set(Math.sin(ang) * r, 0.3 + Math.sin(k * Math.PI) * 1.2, Math.cos(ang) * r);
-      out.look.set(0, 0, 0);
-      out.fov = 28;
-      sweep.current = k;
-      return;
-    }
-    revealStart.current = null;
-    const full = useExperience.getState().viewer;
-    if (portrait) {
-      out.pos.set(0, -1.6, 10.5);
-      out.look.set(0, -1.25, 0);
-    } else {
-      out.pos.set(full ? 0 : -1.9, 0.2, full ? 7.5 : 8);
-      out.look.set(full ? 0 : -1.9, 0, 0);
-    }
-    out.fov = 32;
-  }, prog, 3);
+  useCameraRig(
+    (_p, t, out) => {
+      if (useExperience.getState().revealing) {
+        if (revealStart.current == null) revealStart.current = t;
+        const k = Math.min(1, (t - revealStart.current) / 5);
+        const ang = -0.9 + k * Math.PI * 1.15;
+        const r = 8 - Math.sin(k * Math.PI) * 3.2;
+        out.pos.set(Math.sin(ang) * r, 0.3 + Math.sin(k * Math.PI) * 1.2, Math.cos(ang) * r);
+        out.look.set(0, 0, 0);
+        out.fov = 28;
+        sweep.current = k;
+        return;
+      }
+      revealStart.current = null;
+      const full = useExperience.getState().viewer;
+      if (portrait) {
+        out.pos.set(0, -1.6, 10.5);
+        out.look.set(0, -1.25, 0);
+      } else {
+        out.pos.set(full ? 0 : -1.9, 0.2, full ? 7.5 : 8);
+        out.look.set(full ? 0 : -1.9, 0, 0);
+      }
+      out.fov = 32;
+    },
+    prog,
+    3,
+  );
 
   useFrame(() => {
     if (!useExperience.getState().revealing) sweep.current = 0;

@@ -6,7 +6,19 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export function LightSweep({ period = 6, intensity = 60, y = 2, z = 3, drive }: { period?: number; intensity?: number; y?: number; z?: number; drive?: { current: number } }) {
+export function LightSweep({
+  period = 6,
+  intensity = 60,
+  y = 2,
+  z = 3,
+  drive,
+}: {
+  period?: number;
+  intensity?: number;
+  y?: number;
+  z?: number;
+  drive?: { current: number };
+}) {
   const light = useRef<THREE.SpotLight>(null);
   const target = useRef<THREE.Object3D>(new THREE.Object3D());
   useFrame((s) => {

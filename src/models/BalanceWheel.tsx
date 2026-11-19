@@ -31,7 +31,12 @@ export function BalanceWheel({ radius = 0.2, position = [0, 0, 0], spring = true
           </mesh>
         ))}
         {screws.map((a, i) => (
-          <mesh key={i} position={[Math.cos(a) * radius * 1.09, Math.sin(a) * radius * 1.09, 0]} rotation={[0, 0, a + Math.PI / 2]} material={mat('gold')}>
+          <mesh
+            key={i}
+            position={[Math.cos(a) * radius * 1.09, Math.sin(a) * radius * 1.09, 0]}
+            rotation={[0, 0, a + Math.PI / 2]}
+            material={mat('gold')}
+          >
             <cylinderGeometry args={[radius * 0.045, radius * 0.045, radius * 0.08, 10]} />
           </mesh>
         ))}
@@ -58,6 +63,11 @@ export function Hairspring({ radius = 0.2, position = [0, 0, 0] as [number, numb
     ref.current.scale.set(k, k, 1);
   });
   return (
-    <mesh ref={ref} position={[position[0], position[1], position[2] + radius * 0.12]} geometry={spiralGeometry(radius * 0.08, radius * 0.72, 11, 0.0028)} material={mat('blued')} />
+    <mesh
+      ref={ref}
+      position={[position[0], position[1], position[2] + radius * 0.12]}
+      geometry={spiralGeometry(radius * 0.08, radius * 0.72, 11, 0.0028)}
+      material={mat('blued')}
+    />
   );
 }

@@ -17,7 +17,13 @@ interface CaseProps {
 
 /** Middle case, lugs and crown. */
 export function WatchCase({ shape, material }: CaseProps) {
-  const body = useMemo(() => (shape === 'round' ? roundCaseGeometry(CASE_R, CASE_H) : shapedCaseGeometry(shape, CASE_R * 0.98, CASE_H)), [shape]);
+  const body = useMemo(
+    () =>
+      shape === 'round'
+        ? roundCaseGeometry(CASE_R, CASE_H)
+        : shapedCaseGeometry(shape, CASE_R * 0.98, CASE_H),
+    [shape],
+  );
   const lugX = shape === 'cushion' ? 0.5 : 0.56;
   return (
     <group>
@@ -62,7 +68,12 @@ interface BezelProps {
 export function Bezel({ style, shape, material }: BezelProps) {
   const sides = shape === 'octagon' ? 8 : undefined;
   const geo = useMemo(
-    () => ringGeometry(CASE_R * (shape === 'cushion' ? 0.94 : 0.97), 0.86, 0.04, { flutes: style === 'fluted' ? 60 : undefined, sides, bevel: 0.02 }),
+    () =>
+      ringGeometry(CASE_R * (shape === 'cushion' ? 0.94 : 0.97), 0.86, 0.04, {
+        flutes: style === 'fluted' ? 60 : undefined,
+        sides,
+        bevel: 0.02,
+      }),
     [style, shape, sides],
   );
   const gems = useRef<THREE.InstancedMesh>(null);
@@ -100,7 +111,11 @@ export function Bezel({ style, shape, material }: BezelProps) {
         Array.from({ length: 8 }, (_, i) => {
           const a = (i / 8) * Math.PI * 2 + Math.PI / 8;
           return (
-            <group key={i} position={[Math.cos(a) * 0.915, Math.sin(a) * 0.915, 0.04]} rotation={[Math.PI / 2, 0, 0]}>
+            <group
+              key={i}
+              position={[Math.cos(a) * 0.915, Math.sin(a) * 0.915, 0.04]}
+              rotation={[Math.PI / 2, 0, 0]}
+            >
               <mesh material={mat('steel')}>
                 <cylinderGeometry args={[0.035, 0.035, 0.02, 6]} />
               </mesh>

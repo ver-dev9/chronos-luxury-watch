@@ -34,12 +34,17 @@ export function IntroSection() {
   }, [loaded, reduced]);
 
   useChapterTimeline(ref, (tl, q) => {
-    tl.to(q('[data-title]'), { yPercent: -40, opacity: 0, ease: 'none' }, 0.1).to(q('[data-cue]'), { opacity: 0, ease: 'none' }, 0).to(q('[data-aside]'), { opacity: 0, y: -30, ease: 'none' }, 0.2);
+    tl.to(q('[data-title]'), { yPercent: -40, opacity: 0, ease: 'none' }, 0.1)
+      .to(q('[data-cue]'), { opacity: 0, ease: 'none' }, 0)
+      .to(q('[data-aside]'), { opacity: 0, y: -30, ease: 'none' }, 0.2);
   });
 
   return (
     <Section id="intro" label="Introduction" ref={ref}>
-      <div data-title className="absolute inset-x-0 bottom-[16vh] flex flex-col items-center text-center md:bottom-[13vh]">
+      <div
+        data-title
+        className="absolute inset-x-0 bottom-[16vh] flex flex-col items-center text-center md:bottom-[13vh]"
+      >
         <h1 className="display text-[19vw] leading-none tracking-[0.18em] text-ivory md:text-[11vw]">
           <Split text="CHRONOS" />
         </h1>
@@ -50,9 +55,15 @@ export function IntroSection() {
           Every second is a masterpiece.
         </p>
       </div>
-      <div data-aside data-intro className="absolute left-6 top-[22vh] hidden max-w-[220px] md:left-12 md:block">
+      <div
+        data-aside
+        data-intro
+        className="absolute left-6 top-[22vh] hidden max-w-[220px] md:left-12 md:block"
+      >
         <div className="eyebrow mb-3">Haute Horlogerie</div>
-        <p className="text-xs leading-relaxed text-muted">A fictional maison, rendered entirely in real-time 3D. Drag to turn the watch. Scroll to begin.</p>
+        <p className="text-xs leading-relaxed text-muted">
+          A fictional maison, rendered entirely in real-time 3D. Drag to turn the watch. Scroll to begin.
+        </p>
       </div>
       <div data-cue data-intro className="absolute bottom-8 right-6 flex items-center gap-4 md:right-12">
         <span className="eyebrow text-muted">Scroll</span>

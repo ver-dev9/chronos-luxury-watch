@@ -56,7 +56,13 @@ function romanRing() {
   return t;
 }
 
-const GEARS: { pos: [number, number, number]; r: number; teeth: number; dir: 1 | -1; m: 'brass' | 'darkSteel' | 'gold' }[] = [
+const GEARS: {
+  pos: [number, number, number];
+  r: number;
+  teeth: number;
+  dir: 1 | -1;
+  m: 'brass' | 'darkSteel' | 'gold';
+}[] = [
   { pos: [-5.2, 2.2, -2], r: 3.0, teeth: 60, dir: 1, m: 'brass' },
   { pos: [-1.2, 3.6, -2.4], r: 1.3, teeth: 26, dir: -1, m: 'darkSteel' },
   { pos: [4.8, -1.4, -1.2], r: 2.6, teeth: 52, dir: -1, m: 'brass' },
@@ -78,22 +84,30 @@ export default function TimeScene() {
   const minute = useRef<THREE.Group>(null);
   const pendulum = useRef<THREE.Group>(null);
 
-  useCameraRig((prog, t, out) => {
-    const pts = [
-      [0, 0.6, 19],
-      [-2.6, 0.9, 9],
-      [2.2, -0.4, 4.2],
-      [-0.6, 0.3, 1.2],
-    ];
-    const f = Math.min(2.999, prog * 3);
-    const i = Math.floor(f);
-    const k = THREE.MathUtils.smoothstep(f - i, 0, 1);
-    const a = pts[i];
-    const b = pts[i + 1];
-    out.pos.set(a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k + Math.sin(t * 0.3) * 0.1, a[2] + (b[2] - a[2]) * k);
-    out.look.set(0, 0.2, -6);
-    out.fov = 38;
-  }, p, 2.2);
+  useCameraRig(
+    (prog, t, out) => {
+      const pts = [
+        [0, 0.6, 19],
+        [-2.6, 0.9, 9],
+        [2.2, -0.4, 4.2],
+        [-0.6, 0.3, 1.2],
+      ];
+      const f = Math.min(2.999, prog * 3);
+      const i = Math.floor(f);
+      const k = THREE.MathUtils.smoothstep(f - i, 0, 1);
+      const a = pts[i];
+      const b = pts[i + 1];
+      out.pos.set(
+        a[0] + (b[0] - a[0]) * k,
+        a[1] + (b[1] - a[1]) * k + Math.sin(t * 0.3) * 0.1,
+        a[2] + (b[2] - a[2]) * k,
+      );
+      out.look.set(0, 0.2, -6);
+      out.fov = 38;
+    },
+    p,
+    2.2,
+  );
 
   useFrame((state) => {
     const t = state.clock.elapsedTime + scrollState.progress.time * 40;
@@ -101,7 +115,7 @@ export default function TimeScene() {
       if (g) g.rotation.z = (GEARS[i].dir * t * 0.35) / GEARS[i].r;
     });
     if (minute.current) minute.current.rotation.z = -t * 0.2;
-    if (hour.current) hour.current.rotation.z = -t * 0.2 / 12 - 1.2;
+    if (hour.current) hour.current.rotation.z = (-t * 0.2) / 12 - 1.2;
     if (pendulum.current) pendulum.current.rotation.z = Math.sin(state.clock.elapsedTime * 1.4) * 0.32;
   });
 
@@ -110,15 +124,39 @@ export default function TimeScene() {
     <>
       <fog attach="fog" args={['#080807', 6, 34]} />
       <ambientLight intensity={0.05} color="#c7a76b" />
-      <spotLight position={[2, 14, 6]} angle={0.42} penumbra={0.7} intensity={900} color="#ffe4b0" decay={2} castShadow={shadow} shadow-mapSize={[1024, 1024]} shadow-bias={-0.0005} />
+      <spotLight
+        position={[2, 14, 6]}
+        angle={0.42}
+        penumbra={0.7}
+        intensity={900}
+        color="#ffe4b0"
+        decay={2}
+        castShadow={shadow}
+        shadow-mapSize={[1024, 1024]}
+        shadow-bias={-0.0005}
+      />
       <pointLight position={[0, 0, -4]} intensity={30} color="#e4c88d" decay={2} />
-      <VolumetricBeam position={[2, 6.5, 2]} rotation={[0.22, 0, 0.12]} length={14} radius={3.5} intensity={0.9} />
+      <VolumetricBeam
+        position={[2, 6.5, 2]}
+        rotation={[0.22, 0, 0.12]}
+        length={14}
+        radius={3.5}
+        intensity={0.9}
+      />
 
       {/* the great chapter ring */}
       <group position={[0, 0.5, -6]}>
         <mesh>
           <planeGeometry args={[15, 15]} />
-          <meshStandardMaterial map={ring} transparent roughness={0.4} metalness={0.8} color="#ffffff" emissive="#3a2a10" emissiveIntensity={0.25} />
+          <meshStandardMaterial
+            map={ring}
+            transparent
+            roughness={0.4}
+            metalness={0.8}
+            color="#ffffff"
+            emissive="#3a2a10"
+            emissiveIntensity={0.25}
+          />
         </mesh>
         <group ref={hour} position={[0, 0, 0.2]}>
           <mesh geometry={handGeometry('dauphine', 3.6, 0.55)} material={mat('gold')} castShadow />
@@ -137,7 +175,14 @@ export default function TimeScene() {
           key={i}
           ref={(el) => (gearRefs.current[i] = el)}
           position={g.pos}
-          geometry={gearGeometry({ teeth: g.teeth, radius: g.r, thickness: 0.35, spokes: g.r > 1.2 ? 6 : 4, hole: g.r * 0.12, toothDepth: g.r * 0.08 })}
+          geometry={gearGeometry({
+            teeth: g.teeth,
+            radius: g.r,
+            thickness: 0.35,
+            spokes: g.r > 1.2 ? 6 : 4,
+            hole: g.r * 0.12,
+            toothDepth: g.r * 0.08,
+          })}
           material={mat(g.m)}
           castShadow={shadow}
           receiveShadow
@@ -149,7 +194,12 @@ export default function TimeScene() {
         <mesh position={[0, -2.6, 0]} material={mat('brass')} castShadow={shadow}>
           <boxGeometry args={[0.08, 5.2, 0.08]} />
         </mesh>
-        <mesh position={[0, -5.3, 0]} rotation={[Math.PI / 2, 0, 0]} material={mat('gold')} castShadow={shadow}>
+        <mesh
+          position={[0, -5.3, 0]}
+          rotation={[Math.PI / 2, 0, 0]}
+          material={mat('gold')}
+          castShadow={shadow}
+        >
           <cylinderGeometry args={[0.9, 0.9, 0.18, 64]} />
         </mesh>
       </group>

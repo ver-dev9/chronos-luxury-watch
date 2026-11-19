@@ -61,7 +61,13 @@ function Buckle({ material }: { material: THREE.Material }) {
     hole.lineTo(w - 0.06, h - 0.05);
     hole.lineTo(w - 0.06, -h + 0.05);
     s.holes.push(hole);
-    const g = new THREE.ExtrudeGeometry(s, { depth: 0.04, bevelEnabled: true, bevelSize: 0.012, bevelThickness: 0.012, bevelSegments: 3 });
+    const g = new THREE.ExtrudeGeometry(s, {
+      depth: 0.04,
+      bevelEnabled: true,
+      bevelSize: 0.012,
+      bevelThickness: 0.012,
+      bevelSegments: 3,
+    });
     g.translate(0, 0, -0.02);
     return g;
   }, []);
@@ -77,7 +83,8 @@ function Buckle({ material }: { material: THREE.Material }) {
 
 export function Strap({ style, caseMaterial }: { style: StrapStyle; caseMaterial: THREE.Material }) {
   const isLink = style === 'bracelet' || style === 'titaniumLink';
-  const strapMat: MatKey = style === 'leatherBrown' ? 'leatherBrown' : style === 'rubber' ? 'rubber' : 'leatherBlack';
+  const strapMat: MatKey =
+    style === 'leatherBrown' ? 'leatherBrown' : style === 'rubber' ? 'rubber' : 'leatherBlack';
   const linkMat = style === 'titaniumLink' ? mat('titanium') : mat('steel');
   const linkCenter = style === 'titaniumLink' ? mat('darkSteel') : caseMaterial;
   const geoTop = useMemo(() => strapGeometry(1, WIDTH, 0.07, LEN), []);
@@ -90,12 +97,20 @@ export function Strap({ style, caseMaterial }: { style: StrapStyle; caseMaterial
     <group>
       <ExplodePart id="strap" offset={[0, 1.1, -0.35]} delay={0.3} labelOffset={[0.55, 1.2, -0.3]}>
         <group position={[0, 1.05, -0.08]}>
-          {isLink ? <Links dir={1} material={linkMat} center={linkCenter} /> : <mesh geometry={geoTop} material={mat(strapMat)} castShadow receiveShadow />}
+          {isLink ? (
+            <Links dir={1} material={linkMat} center={linkCenter} />
+          ) : (
+            <mesh geometry={geoTop} material={mat(strapMat)} castShadow receiveShadow />
+          )}
         </group>
       </ExplodePart>
       <ExplodePart id="strap" offset={[0, -1.1, -0.35]} delay={0.3} label={false}>
         <group position={[0, -1.05, -0.08]}>
-          {isLink ? <Links dir={-1} material={linkMat} center={linkCenter} /> : <mesh geometry={geoBottom} material={mat(strapMat)} castShadow receiveShadow />}
+          {isLink ? (
+            <Links dir={-1} material={linkMat} center={linkCenter} />
+          ) : (
+            <mesh geometry={geoBottom} material={mat(strapMat)} castShadow receiveShadow />
+          )}
         </group>
       </ExplodePart>
       {!isLink && (

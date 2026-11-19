@@ -34,7 +34,15 @@ function Station({ index, children }: { index: number; children: ReactNode }) {
   return (
     <group position={[index * GAP, 0, 0]}>
       <primitive object={target.current} />
-      <spotLight ref={light} position={[1.2, 5, 3]} angle={0.45} penumbra={0.8} color="#ffefd2" decay={2} intensity={30} />
+      <spotLight
+        ref={light}
+        position={[1.2, 5, 3]}
+        angle={0.45}
+        penumbra={0.8}
+        color="#ffefd2"
+        decay={2}
+        intensity={30}
+      />
       {children}
     </group>
   );
@@ -83,10 +91,21 @@ function GearCutting() {
   });
   return (
     <group rotation={[-0.5, 0, 0]}>
-      <mesh ref={gear} geometry={gearGeometry({ teeth: 48, radius: 1, thickness: 0.12, spokes: 5, hole: 0.12 })} material={mat('brass')} castShadow />
+      <mesh
+        ref={gear}
+        geometry={gearGeometry({ teeth: 48, radius: 1, thickness: 0.12, spokes: 5, hole: 0.12 })}
+        material={mat('brass')}
+        castShadow
+      />
       <group ref={hob} position={[1.35, 0, 0]}>
         {Array.from({ length: 7 }, (_, i) => (
-          <mesh key={i} position={[0, (i - 3) * 0.09, 0]} rotation={[Math.PI / 2, 0, i * 0.4]} geometry={gearGeometry({ teeth: 14, radius: 0.32, thickness: 0.06, spokes: 0, hole: 0.05 })} material={mat('darkSteel')} />
+          <mesh
+            key={i}
+            position={[0, (i - 3) * 0.09, 0]}
+            rotation={[Math.PI / 2, 0, i * 0.4]}
+            geometry={gearGeometry({ teeth: 14, radius: 0.32, thickness: 0.06, spokes: 0, hole: 0.05 })}
+            material={mat('darkSteel')}
+          />
         ))}
       </group>
     </group>
@@ -103,7 +122,12 @@ function Polishing() {
   });
   return (
     <group rotation={[-0.6, 0.3, 0]}>
-      <mesh ref={ring} geometry={ringGeometry(1, 0.78, 0.18, { flutes: 60, bevel: 0.05 })} material={mat('gold')} castShadow />
+      <mesh
+        ref={ring}
+        geometry={ringGeometry(1, 0.78, 0.18, { flutes: 60, bevel: 0.05 })}
+        material={mat('gold')}
+        castShadow
+      />
       <mesh ref={wheel} position={[1.5, 0, 0.35]} rotation={[0, Math.PI / 2, 0]}>
         <cylinderGeometry args={[0.6, 0.6, 0.35, 48]} />
         <meshStandardMaterial color="#e8dcc4" roughness={1} />
@@ -125,7 +149,10 @@ function Assembly() {
         <Movement detail="low" motionWorks={false} />
       </group>
       <group ref={part}>
-        <mesh geometry={gearGeometry({ teeth: 70, radius: 0.3, thickness: 0.03, spokes: 5, hole: 0.03 })} material={mat('gold')} />
+        <mesh
+          geometry={gearGeometry({ teeth: 70, radius: 0.3, thickness: 0.03, spokes: 5, hole: 0.03 })}
+          material={mat('gold')}
+        />
         <mesh position={[0.06, 0.9, 0]} rotation={[0, 0, 0.08]} material={mat('steel')}>
           <boxGeometry args={[0.04, 1.6, 0.03]} />
         </mesh>
@@ -182,12 +209,16 @@ function Inspection() {
 
 export default function CraftsmanshipScene() {
   const p = useProgress('craftsmanship', 3);
-  useCameraRig((prog, t, out) => {
-    const x = prog * (CRAFT_STEPS.length - 1) * GAP;
-    out.pos.set(x + 1.0, 1.2 + Math.sin(t * 0.25) * 0.08, 6.6);
-    out.look.set(x + 0.9, 0, 0);
-    out.fov = 34;
-  }, p, 2.6);
+  useCameraRig(
+    (prog, t, out) => {
+      const x = prog * (CRAFT_STEPS.length - 1) * GAP;
+      out.pos.set(x + 1.0, 1.2 + Math.sin(t * 0.25) * 0.08, 6.6);
+      out.look.set(x + 0.9, 0, 0);
+      out.fov = 34;
+    },
+    p,
+    2.6,
+  );
   return (
     <>
       <fog attach="fog" args={['#080807', 6, 22]} />

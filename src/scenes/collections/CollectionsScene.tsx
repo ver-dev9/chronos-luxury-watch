@@ -42,7 +42,15 @@ function Piece({ index }: { index: number }) {
   return (
     <group position={[index * RAIL_GAP, 0, 0]}>
       <primitive object={target.current} />
-      <spotLight ref={spot} position={[1.5, 5, 3.5]} angle={0.38} penumbra={0.9} color="#fff1d6" decay={2} intensity={40} />
+      <spotLight
+        ref={spot}
+        position={[1.5, 5, 3.5]}
+        angle={0.38}
+        penumbra={0.9}
+        color="#fff1d6"
+        decay={2}
+        intensity={40}
+      />
       <group ref={g}>
         <WatchModel spec={c.spec} />
       </group>
@@ -53,21 +61,25 @@ function Piece({ index }: { index: number }) {
 export default function CollectionsScene() {
   const p = useProgress('collections', 5);
   const setActive = useExperience((s) => s.setActiveCollection);
-  useCameraRig((prog, t, out) => {
-    const showcase = useExperience.getState().showcaseOpen;
-    const x = prog * (COLLECTIONS.length - 1) * RAIL_GAP;
-    if (showcase) {
-      const i = useExperience.getState().activeCollection;
-      const cx = i * RAIL_GAP;
-      out.pos.set(cx - 1.2 + Math.sin(t * 0.2) * 0.4, 0.4, 4.6);
-      out.look.set(cx - 1.25, 0, 0);
-      out.fov = 30;
-    } else {
-      out.pos.set(x, 0.35, 8.2);
-      out.look.set(x, 0, 0);
-      out.fov = 32;
-    }
-  }, p, 3);
+  useCameraRig(
+    (prog, t, out) => {
+      const showcase = useExperience.getState().showcaseOpen;
+      const x = prog * (COLLECTIONS.length - 1) * RAIL_GAP;
+      if (showcase) {
+        const i = useExperience.getState().activeCollection;
+        const cx = i * RAIL_GAP;
+        out.pos.set(cx - 1.2 + Math.sin(t * 0.2) * 0.4, 0.4, 4.6);
+        out.look.set(cx - 1.25, 0, 0);
+        out.fov = 30;
+      } else {
+        out.pos.set(x, 0.35, 8.2);
+        out.look.set(x, 0, 0);
+        out.fov = 32;
+      }
+    },
+    p,
+    3,
+  );
 
   useFrame(() => {
     const i = Math.round(scrollState.progress.collections * (COLLECTIONS.length - 1));

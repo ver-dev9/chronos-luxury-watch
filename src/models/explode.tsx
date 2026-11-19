@@ -40,7 +40,16 @@ interface PartProps {
   children: ReactNode;
 }
 
-export function ExplodePart({ id, offset, delay = 0, spin = 0, tilt = 0, label = true, labelOffset = [0, 0, 0], children }: PartProps) {
+export function ExplodePart({
+  id,
+  offset,
+  delay = 0,
+  spin = 0,
+  tilt = 0,
+  label = true,
+  labelOffset = [0, 0, 0],
+  children,
+}: PartProps) {
   const { explode, interactive, labels } = useExplode();
   const group = useRef<THREE.Group>(null);
   const labelRef = useRef<HTMLDivElement>(null);

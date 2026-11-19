@@ -59,7 +59,7 @@ export function gearGeometry({ teeth, radius, thickness, spokes = 5, hole = 0.06
     if (spokes > 0 && root > 0.12) {
       const inner = root * 0.82;
       const hub = Math.max(hole * 2.2, root * 0.24);
-      const gap = Math.PI * 2 / spokes;
+      const gap = (Math.PI * 2) / spokes;
       const spokeW = Math.min(0.35, (0.18 * radius) / Math.max(hub, 0.05)) * gap * 0.5;
       for (let s = 0; s < spokes; s++) {
         const a0 = s * gap + spokeW;
@@ -127,7 +127,12 @@ export function escapeWheelGeometry(radius: number, thickness: number) {
 }
 
 /** Annulus extrusion, optionally scalloped (fluted bezel) or polygonal (octagon). */
-export function ringGeometry(outer: number, inner: number, depth: number, opts: { flutes?: number; sides?: number; bevel?: number } = {}) {
+export function ringGeometry(
+  outer: number,
+  inner: number,
+  depth: number,
+  opts: { flutes?: number; sides?: number; bevel?: number } = {},
+) {
   const key = `ring:${outer}:${inner}:${depth}:${JSON.stringify(opts)}`;
   return cached(key, () => {
     const shape = new THREE.Shape();
@@ -201,7 +206,13 @@ export function shapedCaseGeometry(kind: 'octagon' | 'cushion', radius: number, 
       }
     }
     const b = height * 0.3;
-    const g = new THREE.ExtrudeGeometry(shape, { depth: height - b * 2, bevelEnabled: true, bevelSize: b, bevelThickness: b, bevelSegments: 5 });
+    const g = new THREE.ExtrudeGeometry(shape, {
+      depth: height - b * 2,
+      bevelEnabled: true,
+      bevelSize: b,
+      bevelThickness: b,
+      bevelSegments: 5,
+    });
     g.translate(0, 0, -(height - b * 2) / 2);
     g.computeVertexNormals();
     return g;
@@ -249,7 +260,14 @@ export function handGeometry(kind: HandKind, length: number, width: number) {
         break;
     }
     s.closePath();
-    const g = new THREE.ExtrudeGeometry(s, { depth: 0.008, bevelEnabled: true, bevelThickness: 0.004, bevelSize: Math.min(0.004, w * 0.2), bevelSegments: 2, curveSegments: 16 });
+    const g = new THREE.ExtrudeGeometry(s, {
+      depth: 0.008,
+      bevelEnabled: true,
+      bevelThickness: 0.004,
+      bevelSize: Math.min(0.004, w * 0.2),
+      bevelSegments: 2,
+      curveSegments: 16,
+    });
     g.computeVertexNormals();
     return g;
   });
@@ -271,7 +289,13 @@ export function palletForkGeometry(scale = 1) {
     s.lineTo(0, 0.05 * k);
     s.closePath();
     s.holes.push(circlePath(0.012 * k, 16, true));
-    const g = new THREE.ExtrudeGeometry(s, { depth: 0.02, bevelEnabled: true, bevelSize: 0.003, bevelThickness: 0.003, bevelSegments: 1 });
+    const g = new THREE.ExtrudeGeometry(s, {
+      depth: 0.02,
+      bevelEnabled: true,
+      bevelSize: 0.003,
+      bevelThickness: 0.003,
+      bevelSegments: 1,
+    });
     g.translate(0, 0, -0.01);
     return g;
   });
@@ -285,13 +309,22 @@ export function bridgeGeometry(points: [number, number][], width: number, depth:
     const left: THREE.Vector2[] = [];
     const right: THREE.Vector2[] = [];
     samples.forEach((p, i) => {
-      const n = samples[Math.min(i + 1, samples.length - 1)].clone().sub(samples[Math.max(i - 1, 0)]).normalize();
+      const n = samples[Math.min(i + 1, samples.length - 1)]
+        .clone()
+        .sub(samples[Math.max(i - 1, 0)])
+        .normalize();
       const perp = new THREE.Vector2(-n.y, n.x).multiplyScalar(width / 2);
       left.push(p.clone().add(perp));
       right.push(p.clone().sub(perp));
     });
     const shape = new THREE.Shape([...left, ...right.reverse()]);
-    const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelSize: 0.01, bevelThickness: 0.008, bevelSegments: 2 });
+    const g = new THREE.ExtrudeGeometry(shape, {
+      depth,
+      bevelEnabled: true,
+      bevelSize: 0.01,
+      bevelThickness: 0.008,
+      bevelSegments: 2,
+    });
     g.translate(0, 0, -depth / 2);
     g.computeVertexNormals();
     return g;
@@ -308,7 +341,14 @@ export function mainplateGeometry(radius: number, depth: number, holes: [number,
       p.absarc(x, y, r, 0, Math.PI * 2, true);
       shape.holes.push(p);
     });
-    const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelSize: 0.01, bevelThickness: 0.01, bevelSegments: 2, curveSegments: 48 });
+    const g = new THREE.ExtrudeGeometry(shape, {
+      depth,
+      bevelEnabled: true,
+      bevelSize: 0.01,
+      bevelThickness: 0.01,
+      bevelSegments: 2,
+      curveSegments: 48,
+    });
     g.translate(0, 0, -depth / 2);
     return g;
   });

@@ -121,7 +121,12 @@ export function dialTexture(o: DialTextureOpts) {
     for (let y = 0; y < 48; y++)
       for (let x = 0; x < 48; x++) {
         const twill = (x + y) % 4 < 2;
-        const g = ctx.createLinearGradient(x * cell, y * cell, x * cell + (twill ? cell : 0), y * cell + (twill ? 0 : cell));
+        const g = ctx.createLinearGradient(
+          x * cell,
+          y * cell,
+          x * cell + (twill ? cell : 0),
+          y * cell + (twill ? 0 : cell),
+        );
         g.addColorStop(0, '#0a0a0a');
         g.addColorStop(0.5, twill ? '#2b2b2d' : '#1a1a1c');
         g.addColorStop(1, '#0a0a0a');
@@ -203,7 +208,10 @@ export function tachyTexture(size = 1024) {
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(cx + Math.sin(a) * cx * 0.99, cx - Math.cos(a) * cx * 0.99);
-    ctx.lineTo(cx + Math.sin(a) * cx * (i % 10 === 0 ? 0.95 : 0.97), cx - Math.cos(a) * cx * (i % 10 === 0 ? 0.95 : 0.97));
+    ctx.lineTo(
+      cx + Math.sin(a) * cx * (i % 10 === 0 ? 0.95 : 0.97),
+      cx - Math.cos(a) * cx * (i % 10 === 0 ? 0.95 : 0.97),
+    );
     ctx.stroke();
   }
   return finish(key, c, true);
@@ -219,7 +227,12 @@ export function carbonTexture(size = 512) {
   for (let y = 0; y < n; y++)
     for (let x = 0; x < n; x++) {
       const twill = (x + y) % 4 < 2;
-      const g = ctx.createLinearGradient(x * cell, y * cell, x * cell + (twill ? cell : 0), y * cell + (twill ? 0 : cell));
+      const g = ctx.createLinearGradient(
+        x * cell,
+        y * cell,
+        x * cell + (twill ? cell : 0),
+        y * cell + (twill ? 0 : cell),
+      );
       g.addColorStop(0, '#060606');
       g.addColorStop(0.5, twill ? '#323236' : '#1c1c1f');
       g.addColorStop(1, '#060606');

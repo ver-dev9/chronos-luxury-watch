@@ -38,9 +38,15 @@ export function Cursor() {
     };
   }, []);
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[200] hidden [@media(pointer:fine)]:block">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-[200] hidden [@media(pointer:fine)]:block"
+    >
       <div ref={dot} className="absolute -ml-[2px] -mt-[2px] h-1 w-1 rounded-full bg-gold-light" />
-      <div ref={ring} className="absolute -ml-5 -mt-5 h-10 w-10 rounded-full border border-gold/60 transition-[width,height] duration-300" />
+      <div
+        ref={ring}
+        className="absolute -ml-5 -mt-5 h-10 w-10 rounded-full border border-gold/60 transition-[width,height] duration-300"
+      />
     </div>
   );
 }
