@@ -193,20 +193,20 @@ Desktop gets the full experience. Tablet and mobile get re-framed cameras (portr
 
 Captured from the production build in headless Chromium with software WebGL (SwiftShader), so they show the **LOW** quality tier — no bloom or depth of field. Real GPUs render HIGH/MEDIUM.
 
-| | |
-|---|---|
-| ![Intro](docs/screenshots/d-00-intro.jpg) | ![Collection showcase](docs/screenshots/i-showcase.jpg) |
-| ![Exploded watch](docs/screenshots/d-exploded-0.5.jpg) | ![Component inspect](docs/screenshots/i-exploded-select.jpg) |
-| ![Movement](docs/screenshots/d-movement-0.5.jpg) | ![Materials](docs/screenshots/d-materials-0.5.jpg) |
-| ![The Art of Time](docs/screenshots/d-time-0.5.jpg) | ![Configurator](docs/screenshots/d-configurator-0.5.jpg) |
-| ![Reveal](docs/screenshots/i-config-reveal.jpg) | ![Signature](docs/screenshots/d-signature-0.5.jpg) |
-| ![Craftsmanship](docs/screenshots/d-craftsmanship-0.5.jpg) | ![Finale](docs/screenshots/d-finale-0.5.jpg) |
+|                                                            |                                                              |
+| ---------------------------------------------------------- | ------------------------------------------------------------ |
+| ![Intro](docs/screenshots/d-00-intro.jpg)                  | ![Collection showcase](docs/screenshots/i-showcase.jpg)      |
+| ![Exploded watch](docs/screenshots/d-exploded-0.5.jpg)     | ![Component inspect](docs/screenshots/i-exploded-select.jpg) |
+| ![Movement](docs/screenshots/d-movement-0.5.jpg)           | ![Materials](docs/screenshots/d-materials-0.5.jpg)           |
+| ![The Art of Time](docs/screenshots/d-time-0.5.jpg)        | ![Configurator](docs/screenshots/d-configurator-0.5.jpg)     |
+| ![Reveal](docs/screenshots/i-config-reveal.jpg)            | ![Signature](docs/screenshots/d-signature-0.5.jpg)           |
+| ![Craftsmanship](docs/screenshots/d-craftsmanship-0.5.jpg) | ![Finale](docs/screenshots/d-finale-0.5.jpg)                 |
 
 Mobile (390×844): [intro](docs/screenshots/m-00-intro.jpg) · [configurator](docs/screenshots/m-configurator-0.5.jpg) · [signature](docs/screenshots/m-signature-0.5.jpg)
 
 ## 18. Demo link
 
-Deploy with any of the options below and add the URL here.
+**Live:** https://ver-dev9.github.io/chronos-luxury-watch/
 
 ## 19. Credits
 
@@ -226,7 +226,7 @@ License to be confirmed by the author. Until a `LICENSE` file is added, all righ
 
 **Netlify** — import the repo; `netlify.toml` sets `npm run build` → `dist`.
 
-**GitHub Pages** — the Vite `base` defaults to `./` (relative), so `dist/` works from any sub-path. A workflow is included at `.github/workflows/deploy.yml`; enable _Settings → Pages → Source: GitHub Actions_.
+**GitHub Pages** — the Vite `base` defaults to `./` (relative), so `dist/` works from any sub-path. The workflow at `.github/workflows/deploy.yml` builds on every push to `main` and publishes `dist/` to the `gh-pages` branch, which Pages serves.
 
 The site is a single page with no client routes, so no rewrite rules are required.
 
