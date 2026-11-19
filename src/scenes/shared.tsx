@@ -8,7 +8,7 @@ import { useExperience } from '../store/useExperience';
 import { damp, dampV3 } from '../utils/math';
 
 /** Damped copy of a chapter's scroll progress (mutable ref, no renders). */
-export function useProgress(id: ChapterId, lambda = 4) {
+export function useProgress(id: ChapterId, lambda = 9) {
   const p = useRef(scrollState.progress[id]);
   useFrame((_, dt) => {
     p.current = damp(p.current, scrollState.progress[id], lambda, Math.min(dt, 0.1));
@@ -26,7 +26,7 @@ const _look = new THREE.Vector3();
 export function useCameraRig(
   solve: (p: number, t: number, out: { pos: THREE.Vector3; look: THREE.Vector3; fov?: number }) => void,
   progress: { current: number },
-  lambda = 3.5,
+  lambda = 6,
 ) {
   const { camera } = useThree();
   const look = useRef(new THREE.Vector3());
@@ -95,7 +95,6 @@ export function StudioLights({
   shadowY?: number;
 }) {
   const quality = useExperience((s) => s.quality);
-  const size = quality === 'high' ? 1024 : 512;
   return (
     <>
       <ambientLight intensity={0.06 + fill * 0.2} color="#c7a76b" />
@@ -105,9 +104,6 @@ export function StudioLights({
         penumbra={0.9}
         intensity={140 * keyLight}
         color="#fff1d6"
-        castShadow={quality !== 'low'}
-        shadow-mapSize={[size, size]}
-        shadow-bias={-0.0004}
         decay={2}
       />
       <spotLight
@@ -120,7 +116,7 @@ export function StudioLights({
       />
       <directionalLight position={[-3, -2, 4]} intensity={fill} color="#a8b4ff" />
       {quality !== 'low' && shadowY !== 0 && (
-        <mesh rotation-x={-Math.PI / 2} position={[0, shadowY, 0]} receiveShadow>
+        <mesh rotation-x={-Math.PI / 2} position={[0, shadowY, 0]}>
           <planeGeometry args={[30, 30]} />
           <shadowMaterial opacity={0.45} />
         </mesh>
@@ -132,6 +128,6 @@ export function StudioLights({
 export function useParticleCount(base: number) {
   const q = useExperience((s) => s.quality);
   const reduced = useExperience((s) => s.reducedMotion);
-  const mult = q === 'high' ? 1 : q === 'medium' ? 0.45 : 0.18;
+  const mult = q === 'high' ? 0.6 : q === 'medium' ? 0.3 : 0.12;
   return Math.max(200, Math.floor(base * mult * (reduced ? 0.4 : 1)));
 }

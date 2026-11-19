@@ -11,9 +11,8 @@ import { Effects } from './Effects';
 import { StudioEnvironment } from './StudioEnvironment';
 import { LiquidGold } from '../shaders/gold/LiquidGold';
 
-const DPR: Record<Quality, [number, number]> = { high: [1, 2], medium: [1, 1.5], low: [0.75, 1] };
+const DPR: Record<Quality, [number, number]> = { high: [1, 1.5], medium: [1, 1.25], low: [0.75, 1] };
 const DOWN: Record<Quality, Quality> = { high: 'medium', medium: 'low', low: 'low' };
-const UP: Record<Quality, Quality> = { high: 'high', medium: 'high', low: 'medium' };
 
 export function Experience({ onReady }: { onReady: () => void }) {
   const quality = useExperience((s) => s.quality);
@@ -25,10 +24,9 @@ export function Experience({ onReady }: { onReady: () => void }) {
     <div className={`fixed inset-0 ${viewer ? 'z-[60]' : 'z-0'}`} aria-hidden="true">
       <Canvas
         dpr={DPR[quality]}
-        shadows={quality !== 'low' ? 'soft' : false}
         camera={{ fov: 32, near: 0.05, far: 120, position: [0, 0, 9] }}
         gl={{
-          antialias: quality !== 'high',
+          antialias: false,
           powerPreference: 'high-performance',
           alpha: false,
           stencil: false,
@@ -42,10 +40,9 @@ export function Experience({ onReady }: { onReady: () => void }) {
         }}
       >
         <PerformanceMonitor
-          bounds={() => [38, 58]}
-          flipflops={3}
+          bounds={() => [45, 58]}
+          flipflops={1}
           onDecline={() => auto && setQuality(DOWN[useExperience.getState().quality], true)}
-          onIncline={() => auto && setQuality(UP[useExperience.getState().quality], true)}
         />
         <AdaptiveEvents />
         <StudioEnvironment />

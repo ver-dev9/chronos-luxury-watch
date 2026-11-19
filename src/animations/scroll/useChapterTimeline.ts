@@ -25,7 +25,7 @@ export function useChapterTimeline(
           trigger: section,
           start: opts.start ?? 'top top',
           end: opts.end ?? 'bottom bottom',
-          scrub: reduced ? true : (opts.scrub ?? 0.6),
+          scrub: reduced ? true : (opts.scrub ?? 0.2),
         },
       });
       build(tl, q);

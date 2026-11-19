@@ -22,7 +22,7 @@ export function BalanceWheel({ radius = 0.2, position = [0, 0, 0], spring = true
   return (
     <group position={position}>
       <group ref={ref}>
-        <mesh material={mat('gold')} castShadow>
+        <mesh material={mat('gold')}>
           <torusGeometry args={[radius, radius * 0.07, 12, 96]} />
         </mesh>
         {[0, 1, 2].map((i) => (

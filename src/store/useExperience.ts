@@ -63,8 +63,8 @@ function initialQuality(): Quality {
   const w = window.innerWidth;
   const cores = navigator.hardwareConcurrency ?? 4;
   if (w < 768 || cores <= 4) return 'low';
-  if (w < 1200 || cores <= 6) return 'medium';
-  return 'high';
+  if (cores >= 12 && w >= 1280) return 'high';
+  return 'medium';
 }
 
 export const useExperience = create<ExperienceState>((set) => ({

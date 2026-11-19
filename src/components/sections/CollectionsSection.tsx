@@ -96,7 +96,7 @@ export function CollectionsSection() {
         )
         .to(q('[data-head]'), { opacity: 0, duration: 0.06 }, 0.94);
     },
-    { scrub: 0.4 },
+    { scrub: 0.15 },
   );
 
   return (

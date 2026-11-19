@@ -22,7 +22,7 @@ export function startLenis(reducedMotion: boolean) {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }
-  lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 0.9, touchMultiplier: 1.4 });
+  lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.9, touchMultiplier: 1.4 });
   lenis.on('scroll', (l: Lenis) => {
     scrollState.velocity = l.velocity;
     scrollState.global = l.progress;

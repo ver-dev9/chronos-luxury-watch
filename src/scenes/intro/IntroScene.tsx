@@ -71,15 +71,7 @@ export default function IntroScene() {
       <pointLight ref={point} position={[0, 0, 1.2]} color="#f2c879" distance={8} decay={2} />
       <spotLight ref={rim} position={[-4, 3, -5]} angle={0.5} penumbra={1} color="#e4c88d" decay={2} />
       <spotLight ref={rim2} position={[4.5, -1, -4]} angle={0.5} penumbra={1} color="#fff0d0" decay={2} />
-      <spotLight
-        ref={key}
-        position={[3, 5, 6]}
-        angle={0.4}
-        penumbra={0.9}
-        color="#fff1d6"
-        decay={2}
-        castShadow
-      />
+      <spotLight ref={key} position={[3, 5, 6]} angle={0.4} penumbra={0.9} color="#fff1d6" decay={2} />
       <ambientLight intensity={0.04} />
       <LightSweep period={7} intensity={50} />
       <GoldDust count={count} radius={7} height={7} reveal={dust} />

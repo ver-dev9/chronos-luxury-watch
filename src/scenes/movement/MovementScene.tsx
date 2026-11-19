@@ -71,16 +71,7 @@ export default function MovementScene() {
   return (
     <>
       <ambientLight intensity={0.08} color="#c7a76b" />
-      <spotLight
-        position={[4, 6, 9]}
-        angle={0.5}
-        penumbra={1}
-        intensity={190}
-        color="#fff1d6"
-        decay={2}
-        castShadow={quality !== 'low'}
-        shadow-mapSize={[1024, 1024]}
-      />
+      <spotLight position={[4, 6, 9]} angle={0.5} penumbra={1} intensity={190} color="#fff1d6" decay={2} />
       <pointLight position={[-3, -2, 3]} intensity={40} color="#e4c88d" decay={2} />
       <pointLight position={[2, 3, 2]} intensity={25} color="#ffffff" decay={2} />
       {/* case aperture the camera travels through */}

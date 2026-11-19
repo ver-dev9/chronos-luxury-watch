@@ -35,10 +35,10 @@ function Links({ dir, material, center }: { dir: 1 | -1; material: THREE.Materia
   }, [curve]);
   return (
     <group>
-      <instancedMesh ref={outer} args={[undefined, undefined, count]} material={material} castShadow>
+      <instancedMesh ref={outer} args={[undefined, undefined, count]} material={material}>
         <boxGeometry args={[WIDTH, 0.095, 0.075]} />
       </instancedMesh>
-      <instancedMesh ref={mid} args={[undefined, undefined, count]} material={center} castShadow>
+      <instancedMesh ref={mid} args={[undefined, undefined, count]} material={center}>
         <boxGeometry args={[WIDTH * 0.36, 0.1, 0.075]} />
       </instancedMesh>
     </group>
@@ -73,7 +73,7 @@ function Buckle({ material }: { material: THREE.Material }) {
   }, []);
   return (
     <group>
-      <mesh geometry={geo} material={material} castShadow />
+      <mesh geometry={geo} material={material} />
       <mesh position={[0, 0, 0.03]} material={material}>
         <boxGeometry args={[0.035, 0.32, 0.03]} />
       </mesh>
@@ -100,7 +100,7 @@ export function Strap({ style, caseMaterial }: { style: StrapStyle; caseMaterial
           {isLink ? (
             <Links dir={1} material={linkMat} center={linkCenter} />
           ) : (
-            <mesh geometry={geoTop} material={mat(strapMat)} castShadow receiveShadow />
+            <mesh geometry={geoTop} material={mat(strapMat)} />
           )}
         </group>
       </ExplodePart>
@@ -109,7 +109,7 @@ export function Strap({ style, caseMaterial }: { style: StrapStyle; caseMaterial
           {isLink ? (
             <Links dir={-1} material={linkMat} center={linkCenter} />
           ) : (
-            <mesh geometry={geoBottom} material={mat(strapMat)} castShadow receiveShadow />
+            <mesh geometry={geoBottom} material={mat(strapMat)} />
           )}
         </group>
       </ExplodePart>

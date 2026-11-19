@@ -12,7 +12,6 @@ import { mat } from '../../utils/materials';
 import { useCameraRig, useParticleCount, useProgress } from '../shared';
 import { GoldDust } from '../../shaders/particles/GoldDust';
 import { VolumetricBeam } from '../../shaders/transitions/VolumetricBeam';
-import { useExperience } from '../../store/useExperience';
 import { scrollState } from '../../store/scrollState';
 
 function romanRing() {
@@ -75,7 +74,6 @@ const GEARS: {
 
 export default function TimeScene() {
   const p = useProgress('time', 3);
-  const quality = useExperience((s) => s.quality);
   const count = useParticleCount(3500);
   const ring = useMemo(romanRing, []);
   useEffect(() => () => ring.dispose(), [ring]);
@@ -119,7 +117,6 @@ export default function TimeScene() {
     if (pendulum.current) pendulum.current.rotation.z = Math.sin(state.clock.elapsedTime * 1.4) * 0.32;
   });
 
-  const shadow = quality !== 'low';
   return (
     <>
       <fog attach="fog" args={['#080807', 6, 34]} />
@@ -131,9 +128,6 @@ export default function TimeScene() {
         intensity={900}
         color="#ffe4b0"
         decay={2}
-        castShadow={shadow}
-        shadow-mapSize={[1024, 1024]}
-        shadow-bias={-0.0005}
       />
       <pointLight position={[0, 0, -4]} intensity={30} color="#e4c88d" decay={2} />
       <VolumetricBeam
@@ -159,10 +153,10 @@ export default function TimeScene() {
           />
         </mesh>
         <group ref={hour} position={[0, 0, 0.2]}>
-          <mesh geometry={handGeometry('dauphine', 3.6, 0.55)} material={mat('gold')} castShadow />
+          <mesh geometry={handGeometry('dauphine', 3.6, 0.55)} material={mat('gold')} />
         </group>
         <group ref={minute} position={[0, 0, 0.45]}>
-          <mesh geometry={handGeometry('dauphine', 5.4, 0.42)} material={mat('gold')} castShadow />
+          <mesh geometry={handGeometry('dauphine', 5.4, 0.42)} material={mat('gold')} />
         </group>
         <mesh position={[0, 0, 0.6]} rotation={[Math.PI / 2, 0, 0]} material={mat('gold')}>
           <cylinderGeometry args={[0.28, 0.28, 0.3, 32]} />
@@ -184,22 +178,15 @@ export default function TimeScene() {
             toothDepth: g.r * 0.08,
           })}
           material={mat(g.m)}
-          castShadow={shadow}
-          receiveShadow
         />
       ))}
 
       {/* pendulum */}
       <group ref={pendulum} position={[0, -3.2, -4.6]}>
-        <mesh position={[0, -2.6, 0]} material={mat('brass')} castShadow={shadow}>
+        <mesh position={[0, -2.6, 0]} material={mat('brass')}>
           <boxGeometry args={[0.08, 5.2, 0.08]} />
         </mesh>
-        <mesh
-          position={[0, -5.3, 0]}
-          rotation={[Math.PI / 2, 0, 0]}
-          material={mat('gold')}
-          castShadow={shadow}
-        >
+        <mesh position={[0, -5.3, 0]} rotation={[Math.PI / 2, 0, 0]} material={mat('gold')}>
           <cylinderGeometry args={[0.9, 0.9, 0.18, 64]} />
         </mesh>
       </group>
@@ -207,13 +194,13 @@ export default function TimeScene() {
       {/* colonnade */}
       {[-1, 1].map((side) =>
         Array.from({ length: 5 }, (_, i) => (
-          <mesh key={`${side}${i}`} position={[side * 9, 0, 6 - i * 6]} castShadow={shadow} receiveShadow>
+          <mesh key={`${side}${i}`} position={[side * 9, 0, 6 - i * 6]}>
             <boxGeometry args={[1.1, 22, 1.1]} />
             <meshStandardMaterial color="#14120f" roughness={0.75} metalness={0.2} />
           </mesh>
         )),
       )}
-      <mesh rotation-x={-Math.PI / 2} position={[0, -9, 0]} receiveShadow>
+      <mesh rotation-x={-Math.PI / 2} position={[0, -9, 0]}>
         <planeGeometry args={[60, 60]} />
         <meshStandardMaterial color="#0d0c0a" roughness={0.35} metalness={0.6} />
       </mesh>

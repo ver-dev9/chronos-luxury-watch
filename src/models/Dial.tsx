@@ -52,7 +52,7 @@ export function Dial({ spec, size = 1024 }: { spec: WatchSpec; size?: number }) 
   }
   return (
     <group>
-      <mesh material={material} receiveShadow>
+      <mesh material={material}>
         <circleGeometry args={[0.86, 128]} />
       </mesh>
       {spec.subdials && <Subdials color={spec.dialColor} />}
@@ -103,7 +103,7 @@ export function Markers({ spec }: { spec: WatchSpec }) {
                 <octahedronGeometry args={[big ? 0.045 : 0.032, 0]} />
               </mesh>
             ) : (
-              <mesh material={mat(matKey)} castShadow>
+              <mesh material={mat(matKey)}>
                 <boxGeometry
                   args={[big && i === 0 ? 0.07 : 0.035, kind === 'minimal' ? 0.07 : big ? 0.13 : 0.1, 0.02]}
                 />

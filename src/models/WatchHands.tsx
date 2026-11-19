@@ -35,17 +35,16 @@ export function WatchHands({ spec, frozen = false }: { spec: WatchSpec; frozen?:
   return (
     <group>
       <group ref={h} position={[0, 0, 0.0]}>
-        <mesh geometry={handGeometry(style, 0.46, 0.07)} material={mat(matKey)} castShadow />
+        <mesh geometry={handGeometry(style, 0.46, 0.07)} material={mat(matKey)} />
       </group>
       <group ref={m} position={[0, 0, 0.018]}>
-        <mesh geometry={handGeometry(style, 0.7, 0.055)} material={mat(matKey)} castShadow />
+        <mesh geometry={handGeometry(style, 0.7, 0.055)} material={mat(matKey)} />
       </group>
       {!spec.subdials && (
         <group ref={s} position={[0, 0, 0.036]}>
           <mesh
             geometry={handGeometry('needle', 0.76, 0.03)}
             material={mat(spec.dialColor === 'ivory' ? 'blued' : 'gold')}
-            castShadow
           />
         </group>
       )}

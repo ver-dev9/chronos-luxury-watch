@@ -27,7 +27,7 @@ export function WatchCase({ shape, material }: CaseProps) {
   const lugX = shape === 'cushion' ? 0.5 : 0.56;
   return (
     <group>
-      <mesh geometry={body} material={material} castShadow receiveShadow />
+      <mesh geometry={body} material={material} />
       {[-1, 1].map((sy) =>
         [-1, 1].map((sx) => (
           <RoundedBox
@@ -38,13 +38,12 @@ export function WatchCase({ shape, material }: CaseProps) {
             position={[sx * lugX, sy * 0.98, -0.03]}
             rotation={[sy * -0.22, 0, 0]}
             material={material}
-            castShadow
           />
         )),
       )}
       {/* crown + guards */}
       <group position={[CASE_R * 1.02, 0, 0]} rotation={[0, 0, -Math.PI / 2]}>
-        <mesh position={[0, 0.06, 0]} material={material} castShadow>
+        <mesh position={[0, 0.06, 0]} material={material}>
           <cylinderGeometry args={[0.1, 0.1, 0.12, 36]} />
         </mesh>
         <mesh position={[0, 0.06, 0]} material={material}>
@@ -95,7 +94,7 @@ export function Bezel({ style, shape, material }: BezelProps) {
 
   return (
     <group>
-      <mesh geometry={geo} material={style === 'tachymeter' ? mat('ceramic') : material} castShadow />
+      <mesh geometry={geo} material={style === 'tachymeter' ? mat('ceramic') : material} />
       {style === 'tachymeter' && (
         <mesh position={[0, 0, 0.042]}>
           <ringGeometry args={[0.865, 0.955, 96]} />
@@ -141,7 +140,7 @@ export function Crystal({ lite }: { lite: boolean }) {
 export function CaseBack({ material, lite }: { material: THREE.Material; lite: boolean }) {
   return (
     <group>
-      <mesh geometry={ringGeometry(0.84, 0.55, 0.05, { bevel: 0.015 })} material={material} castShadow />
+      <mesh geometry={ringGeometry(0.84, 0.55, 0.05, { bevel: 0.015 })} material={material} />
       <mesh rotation={[Math.PI / 2, 0, 0]} material={mat(lite ? 'sapphireLite' : 'sapphire')}>
         <cylinderGeometry args={[0.56, 0.56, 0.02, 64]} />
       </mesh>

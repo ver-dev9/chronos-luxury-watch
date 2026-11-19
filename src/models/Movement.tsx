@@ -82,12 +82,7 @@ function Screws({ points }: { points: [number, number, number][] }) {
   }, [points]);
   return (
     <group>
-      <instancedMesh
-        ref={heads}
-        args={[undefined, undefined, points.length]}
-        material={mat('blued')}
-        castShadow
-      >
+      <instancedMesh ref={heads} args={[undefined, undefined, points.length]} material={mat('blued')}>
         <cylinderGeometry args={[0.026, 0.026, 0.018, 20]} />
       </instancedMesh>
       <instancedMesh ref={slots} args={[undefined, undefined, points.length]}>
@@ -105,7 +100,7 @@ function EscapeWheel({ position }: { position: [number, number, number] }) {
   });
   return (
     <group ref={ref} position={position}>
-      <mesh geometry={escapeWheelGeometry(0.1, 0.018)} material={mat('rhodium')} castShadow />
+      <mesh geometry={escapeWheelGeometry(0.1, 0.018)} material={mat('rhodium')} />
       <mesh material={mat('rhodium')}>
         <torusGeometry args={[0.052, 0.008, 6, 32]} />
       </mesh>
@@ -125,7 +120,7 @@ function PalletFork({ position, rotation = 0 }: { position: [number, number, num
   });
   return (
     <group ref={ref} position={position}>
-      <mesh geometry={palletForkGeometry(1)} material={mat('steel')} castShadow />
+      <mesh geometry={palletForkGeometry(1)} material={mat('steel')} />
       <mesh position={[-0.18, -0.03, 0.01]} material={mat('ruby')}>
         <boxGeometry args={[0.02, 0.04, 0.02]} />
       </mesh>
@@ -279,12 +274,7 @@ export function Movement({ tourbillon = false, detail = 'high', motionWorks = tr
   return (
     <group>
       <ExplodePart id="plates" offset={[0, 0, -0.45]} delay={0.38} labelOffset={[-0.85, 0.3, 0]}>
-        <mesh
-          geometry={mainplateGeometry(0.8, 0.03, plateHoles)}
-          material={mat('plate')}
-          receiveShadow
-          castShadow
-        />
+        <mesh geometry={mainplateGeometry(0.8, 0.03, plateHoles)} material={mat('plate')} />
       </ExplodePart>
 
       {motionWorks && (
@@ -396,9 +386,9 @@ export function Movement({ tourbillon = false, detail = 'high', motionWorks = tr
       )}
 
       <ExplodePart id="plates" offset={[0, 0, -1.95]} delay={0.6} label={false}>
-        <mesh position={[0, 0, zB]} geometry={bridges.barrel} material={mat('plate')} castShadow />
-        <mesh position={[0, 0, zB]} geometry={bridges.train} material={mat('plate')} castShadow />
-        <mesh position={[0, 0, zB]} geometry={bridges.cock} material={mat('plate')} castShadow />
+        <mesh position={[0, 0, zB]} geometry={bridges.barrel} material={mat('plate')} />
+        <mesh position={[0, 0, zB]} geometry={bridges.train} material={mat('plate')} />
+        <mesh position={[0, 0, zB]} geometry={bridges.cock} material={mat('plate')} />
         {detail === 'high' && <Jewels points={jewels} />}
       </ExplodePart>
 

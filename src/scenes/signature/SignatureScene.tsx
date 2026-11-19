@@ -41,21 +41,12 @@ function Exhibit({ index }: { index: number }) {
   return (
     <group position={[index * GAP, 0, side * 0.6]}>
       <primitive object={target.current} />
-      <spotLight
-        ref={spot}
-        position={[0, 7, 1.5]}
-        angle={0.3}
-        penumbra={0.6}
-        color="#fff0d2"
-        decay={2}
-        castShadow={useExperience.getState().quality === 'high'}
-        shadow-mapSize={[512, 512]}
-      />
+      <spotLight ref={spot} position={[0, 7, 1.5]} angle={0.3} penumbra={0.6} color="#fff0d2" decay={2} />
       <VolumetricBeam position={[0, 4.2, 0.2]} length={7} radius={1.4} intensity={0.6} />
       <group ref={g} scale={0.72}>
         <WatchModel spec={SIGNATURE[index].spec} />
       </group>
-      <mesh position={[0, -3.2, 0]} castShadow receiveShadow>
+      <mesh position={[0, -3.2, 0]}>
         <boxGeometry args={[2.4, 2.4, 2.4]} />
         <meshStandardMaterial color="#14120f" roughness={0.6} metalness={0.3} />
       </mesh>
@@ -91,7 +82,7 @@ export default function SignatureScene() {
     <>
       <fog attach="fog" args={['#080807', 7, 26]} />
       <ambientLight intensity={0.05} />
-      <mesh rotation-x={-Math.PI / 2} position={[12, -4.4, 0]} receiveShadow>
+      <mesh rotation-x={-Math.PI / 2} position={[12, -4.4, 0]}>
         <planeGeometry args={[80, 40]} />
         <meshStandardMaterial color="#0c0b09" roughness={0.4} metalness={0.5} />
       </mesh>

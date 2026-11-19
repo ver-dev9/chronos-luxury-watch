@@ -59,7 +59,7 @@ function Machining() {
   return (
     <group rotation={[0, -0.4, 0]}>
       <group ref={blank}>
-        <mesh material={mat('steel')} castShadow>
+        <mesh material={mat('steel')}>
           <cylinderGeometry args={[0.9, 0.95, 0.55, 96]} />
         </mesh>
         <mesh position={[0, -0.6, 0]} material={mat('darkSteel')}>
@@ -95,7 +95,6 @@ function GearCutting() {
         ref={gear}
         geometry={gearGeometry({ teeth: 48, radius: 1, thickness: 0.12, spokes: 5, hole: 0.12 })}
         material={mat('brass')}
-        castShadow
       />
       <group ref={hob} position={[1.35, 0, 0]}>
         {Array.from({ length: 7 }, (_, i) => (
@@ -126,7 +125,6 @@ function Polishing() {
         ref={ring}
         geometry={ringGeometry(1, 0.78, 0.18, { flutes: 60, bevel: 0.05 })}
         material={mat('gold')}
-        castShadow
       />
       <mesh ref={wheel} position={[1.5, 0, 0.35]} rotation={[0, Math.PI / 2, 0]}>
         <cylinderGeometry args={[0.6, 0.6, 0.35, 48]} />
@@ -223,7 +221,7 @@ export default function CraftsmanshipScene() {
     <>
       <fog attach="fog" args={['#080807', 6, 22]} />
       <ambientLight intensity={0.05} />
-      <mesh rotation-x={-Math.PI / 2} position={[17, -1.8, 0]} receiveShadow>
+      <mesh rotation-x={-Math.PI / 2} position={[17, -1.8, 0]}>
         <planeGeometry args={[60, 14]} />
         <meshStandardMaterial color="#110f0c" roughness={0.55} metalness={0.4} />
       </mesh>
