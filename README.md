@@ -1,6 +1,6 @@
 # CHRONOS — The Art of Time
 
-> *Every second is a masterpiece.*
+> _Every second is a masterpiece._
 
 An immersive luxury watch showcase featuring cinematic 3D product visualization, interactive mechanical watch exploration, scroll-driven storytelling, WebGL, Three.js, React Three Fiber, GLSL shaders and GSAP animations.
 
@@ -12,18 +12,18 @@ An immersive luxury watch showcase featuring cinematic 3D product visualization,
 
 CHRONOS is a ten-chapter, scroll-driven 3D exhibition built around a single protagonist: a mechanical watch floating in darkness. Every watch, case, dial, hand, gear, spring, strap and buckle is **generated procedurally in Three.js at runtime** — the site ships no 3D model files and no bitmap textures.
 
-| # | Chapter | What happens |
-|---|---|---|
-| 01 | The Awakening | Black screen → golden light → dust → silhouette → reflections → title. Scroll orbits and dives. |
-| 02 | The Collection | Horizontal 3D rail of four distinct watches synced to a DOM gallery; hover/drag rotate; *Explore Collection* showcase. |
-| 03 | The Exploded Watch | Scroll-controlled disassembly into 17 labelled, clickable components; disassemble / reassemble / slider controls. |
-| 04 | Inside the Movement | Macro camera journey through the case aperture across barrel, train, escapement and balance with depth of field. |
-| 05 | The Art of Materials | Case cross-fades through 8 PBR materials while the camera orbits; a dedicated specimen per material. |
-| 06 | The Art of Time | Cathedral-scale clockwork: meshing giant gears, Roman chapter ring, pendulum, volumetric light. |
-| 07 | The Atelier | Real-time configurator (case, dial, strap, markers), rotate controls, fullscreen, summary, cinematic reveal. |
-| 08 | Signature Collection | Five pieces on plinths under shafts of light, presented as an exhibition; drag to inspect. |
-| 09 | The Craftsmanship | Six animated atelier vignettes: machining, gear cutting, polishing, assembly, dial finishing, inspection. |
-| 10 | Finale | Components reassemble inside a gold-dust vortex; final orbit, credits, footer. |
+| #   | Chapter              | What happens                                                                                                           |
+| --- | -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 01  | The Awakening        | Black screen → golden light → dust → silhouette → reflections → title. Scroll orbits and dives.                        |
+| 02  | The Collection       | Horizontal 3D rail of four distinct watches synced to a DOM gallery; hover/drag rotate; _Explore Collection_ showcase. |
+| 03  | The Exploded Watch   | Scroll-controlled disassembly into 17 labelled, clickable components; disassemble / reassemble / slider controls.      |
+| 04  | Inside the Movement  | Macro camera journey through the case aperture across barrel, train, escapement and balance with depth of field.       |
+| 05  | The Art of Materials | Case cross-fades through 8 PBR materials while the camera orbits; a dedicated specimen per material.                   |
+| 06  | The Art of Time      | Cathedral-scale clockwork: meshing giant gears, Roman chapter ring, pendulum, volumetric light.                        |
+| 07  | The Atelier          | Real-time configurator (case, dial, strap, markers), rotate controls, fullscreen, summary, cinematic reveal.           |
+| 08  | Signature Collection | Five pieces on plinths under shafts of light, presented as an exhibition; drag to inspect.                             |
+| 09  | The Craftsmanship    | Six animated atelier vignettes: machining, gear cutting, polishing, assembly, dial finishing, inspection.              |
+| 10  | Finale               | Components reassemble inside a gold-dust vortex; final orbit, credits, footer.                                         |
 
 ## 2. Creative concept
 
@@ -31,15 +31,15 @@ High-end watch advertising meets the experimental web. Darkness is the canvas; l
 
 ## 3. Brand identity
 
-| Token | Hex | Use |
-|---|---|---|
-| Ink | `#080807` | Primary background |
-| Night | `#11100D` | Secondary background |
-| Charcoal | `#171511` | Panels |
-| Champagne gold | `#C7A76B` | Accent, rules, labels |
-| Light gold | `#E4C88D` | Highlights, active states |
-| Warm ivory | `#F5F0E5` | Display type |
-| Muted | `#A39B8A` | Body copy |
+| Token          | Hex       | Use                       |
+| -------------- | --------- | ------------------------- |
+| Ink            | `#080807` | Primary background        |
+| Night          | `#11100D` | Secondary background      |
+| Charcoal       | `#171511` | Panels                    |
+| Champagne gold | `#C7A76B` | Accent, rules, labels     |
+| Light gold     | `#E4C88D` | Highlights, active states |
+| Warm ivory     | `#F5F0E5` | Display type              |
+| Muted          | `#A39B8A` | Body copy                 |
 
 Typefaces: **Cormorant Garamond** (display serif) and **Inter** (body sans), with widely tracked uppercase labels.
 
@@ -158,13 +158,13 @@ and load with Drei's `useGLTF` (Draco/Meshopt decoders) plus `KTX2Loader`.
 
 ## 13. Shader implementation
 
-| Shader | File | Notes |
-|---|---|---|
-| Golden dust | `shaders/particles/GoldDust.tsx` | GPU points; simplex-noise drift, pointer repulsion, staged reveal, vortex "flow" mode, scroll-velocity speed-up |
-| Liquid gold | `shaders/gold/LiquidGold.tsx` | Full-screen veil with noise-carved molten edge, used at selected chapter boundaries |
-| Volumetric beam | `shaders/transitions/VolumetricBeam.tsx` | Additive cone with rim falloff and drifting noise (fake volumetrics) |
-| Light sweep | `shaders/transitions/LightSweep.tsx` | Narrow warm spot gliding across metal (time- or reveal-driven) |
-| Simplex noise | `shaders/noise.glsl.ts` | Shared GLSL include |
+| Shader          | File                                     | Notes                                                                                                           |
+| --------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Golden dust     | `shaders/particles/GoldDust.tsx`         | GPU points; simplex-noise drift, pointer repulsion, staged reveal, vortex "flow" mode, scroll-velocity speed-up |
+| Liquid gold     | `shaders/gold/LiquidGold.tsx`            | Full-screen veil with noise-carved molten edge, used at selected chapter boundaries                             |
+| Volumetric beam | `shaders/transitions/VolumetricBeam.tsx` | Additive cone with rim falloff and drifting noise (fake volumetrics)                                            |
+| Light sweep     | `shaders/transitions/LightSweep.tsx`     | Narrow warm spot gliding across metal (time- or reveal-driven)                                                  |
+| Simplex noise   | `shaders/noise.glsl.ts`                  | Shared GLSL include                                                                                             |
 
 Post-processing: bloom (mipmap), depth of field (movement + exhibition on HIGH), speed-reactive chromatic aberration, film grain, vignette and a selection outline in the exploded view.
 
@@ -191,7 +191,18 @@ Desktop gets the full experience. Tablet and mobile get re-framed cameras (portr
 
 ## 17. Screenshots
 
-See [`docs/screenshots`](docs/screenshots) — captured from the production build in headless Chromium (software WebGL, so they show the LOW quality tier).
+Captured from the production build in headless Chromium with software WebGL (SwiftShader), so they show the **LOW** quality tier — no bloom or depth of field. Real GPUs render HIGH/MEDIUM.
+
+| | |
+|---|---|
+| ![Intro](docs/screenshots/d-00-intro.jpg) | ![Collection showcase](docs/screenshots/i-showcase.jpg) |
+| ![Exploded watch](docs/screenshots/d-exploded-0.5.jpg) | ![Component inspect](docs/screenshots/i-exploded-select.jpg) |
+| ![Movement](docs/screenshots/d-movement-0.5.jpg) | ![Materials](docs/screenshots/d-materials-0.5.jpg) |
+| ![The Art of Time](docs/screenshots/d-time-0.5.jpg) | ![Configurator](docs/screenshots/d-configurator-0.5.jpg) |
+| ![Reveal](docs/screenshots/i-config-reveal.jpg) | ![Signature](docs/screenshots/d-signature-0.5.jpg) |
+| ![Craftsmanship](docs/screenshots/d-craftsmanship-0.5.jpg) | ![Finale](docs/screenshots/d-finale-0.5.jpg) |
+
+Mobile (390×844): [intro](docs/screenshots/m-00-intro.jpg) · [configurator](docs/screenshots/m-configurator-0.5.jpg) · [signature](docs/screenshots/m-signature-0.5.jpg)
 
 ## 18. Demo link
 
@@ -199,7 +210,7 @@ Deploy with any of the options below and add the URL here.
 
 ## 19. Credits
 
-Concept, design & development — Dev Lawaniya.
+Concept, design & development — [ver-dev9](https://github.com/ver-dev9).
 Simplex noise GLSL — Ashima Arts / Stefan Gustavson (MIT).
 All 3D models, textures and sounds are original and procedurally generated.
 
@@ -215,7 +226,7 @@ License to be confirmed by the author. Until a `LICENSE` file is added, all righ
 
 **Netlify** — import the repo; `netlify.toml` sets `npm run build` → `dist`.
 
-**GitHub Pages** — the Vite `base` defaults to `./` (relative), so `dist/` works from any sub-path. A workflow is included at `.github/workflows/deploy.yml`; enable *Settings → Pages → Source: GitHub Actions*.
+**GitHub Pages** — the Vite `base` defaults to `./` (relative), so `dist/` works from any sub-path. A workflow is included at `.github/workflows/deploy.yml`; enable _Settings → Pages → Source: GitHub Actions_.
 
 The site is a single page with no client routes, so no rewrite rules are required.
 
