@@ -1,4 +1,4 @@
-import{r as i,a as m,j as r}from"./r3f-ByKTNEWH.js";import{a5 as c,ar as f,D as d}from"./three-DYm3mj0G.js";import{b as g}from"./index-CGk2RyFV.js";const p=`
+import{r as i,a as m,j as r}from"./r3f-ByKTNEWH.js";import{a5 as c,ar as f,D as d}from"./three-DYm3mj0G.js";import{b as g}from"./index-DGbEQH-Y.js";const p=`
 varying vec3 vPos; varying vec3 vNormal; varying vec3 vView;
 void main(){ vPos = position; vec4 wp = modelMatrix*vec4(position,1.0);
  vNormal = normalize(normalMatrix*normal); vView = normalize(-(viewMatrix*wp).xyz);
