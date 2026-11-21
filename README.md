@@ -218,17 +218,17 @@ Desktop gets the full experience. Tablet and mobile get re-framed cameras (portr
 - Sound is opt-in and never required; the canvas is `aria-hidden` and all story content exists as text
 - WebGL-less browsers get a readable fallback
 
-## 18. Demo link
+## 17. Demo link
 
 **Live:** https://ver-dev9.github.io/chronos-luxury-watch/
 
-## 19. Credits
+## 18. Credits
 
 Concept, design & development — [ver-dev9](https://github.com/ver-dev9).
 Simplex noise GLSL — Ashima Arts / Stefan Gustavson (MIT).
 All 3D models, textures and sounds are original and procedurally generated.
 
-## 20. License
+## 19. License
 
 License to be confirmed by the author. Until a `LICENSE` file is added, all rights are reserved.
 
