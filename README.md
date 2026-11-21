@@ -204,17 +204,28 @@ Captured from the production build in headless Chromium with software WebGL (Swi
 
 Mobile (390×844): [intro](docs/screenshots/m-00-intro.jpg) · [configurator](docs/screenshots/m-configurator-0.5.jpg) · [signature](docs/screenshots/m-signature-0.5.jpg)
 
-## 18. Demo link
+## 18. Cinematic showreel
+
+The CHRONOS showcase film is presented in **16:9 widescreen**.
+
+<video width="100%" controls playsinline preload="metadata">
+  <source src="https://raw.githubusercontent.com/ver-dev9/chronos-luxury-watch/main/chronos-showreel-16x9.mp4" type="video/mp4">
+  Your browser does not support embedded video. [Watch the CHRONOS showreel](https://github.com/ver-dev9/chronos-luxury-watch/blob/main/chronos-showreel-16x9.mp4).
+</video>
+
+[Open or download the 16:9 showreel](https://github.com/ver-dev9/chronos-luxury-watch/blob/main/chronos-showreel-16x9.mp4).
+
+## 19. Demo link
 
 **Live:** https://ver-dev9.github.io/chronos-luxury-watch/
 
-## 19. Credits
+## 20. Credits
 
 Concept, design & development — [ver-dev9](https://github.com/ver-dev9).
 Simplex noise GLSL — Ashima Arts / Stefan Gustavson (MIT).
 All 3D models, textures and sounds are original and procedurally generated.
 
-## 20. License
+## 21. License
 
 License to be confirmed by the author. Until a `LICENSE` file is added, all rights are reserved.
 
