@@ -2,6 +2,35 @@
 
 > _Every second is a masterpiece._
 
+## Visual showcase
+
+### CHRONOS cinematic film — 16:9
+
+<video width="100%" controls playsinline preload="metadata">
+  <source src="https://raw.githubusercontent.com/ver-dev9/chronos-luxury-watch/main/chronos-showreel-16x9.mp4" type="video/mp4">
+  Your browser does not support inline playback. Open the [CHRONOS cinematic film](https://raw.githubusercontent.com/ver-dev9/chronos-luxury-watch/main/chronos-showreel-16x9.mp4).
+</video>
+
+### Website screenshots
+
+| Intro | Collection |
+|:---:|:---:|
+| ![CHRONOS intro](docs/screenshots/d-00-intro.jpg) | ![Collection showcase](docs/screenshots/i-showcase.jpg) |
+
+| Exploded watch | Movement |
+|:---:|:---:|
+| ![Exploded watch](docs/screenshots/d-exploded-0.5.jpg) | ![Movement](docs/screenshots/d-movement-0.5.jpg) |
+
+| Materials | Configurator |
+|:---:|:---:|
+| ![Materials](docs/screenshots/d-materials-0.5.jpg) | ![Configurator](docs/screenshots/d-configurator-0.5.jpg) |
+
+| Signature collection | Finale |
+|:---:|:---:|
+| ![Signature collection](docs/screenshots/d-signature-0.5.jpg) | ![Finale](docs/screenshots/d-finale-0.5.jpg) |
+
+---
+
 An immersive luxury watch showcase featuring cinematic 3D product visualization, interactive mechanical watch exploration, scroll-driven storytelling, WebGL, Three.js, React Three Fiber, GLSL shaders and GSAP animations.
 
 **CHRONOS is a fictional brand.** This is a creative-development portfolio piece: there is no store, no checkout, no inventory and no accounts. Nothing here is for sale.
@@ -189,43 +218,17 @@ Desktop gets the full experience. Tablet and mobile get re-framed cameras (portr
 - Sound is opt-in and never required; the canvas is `aria-hidden` and all story content exists as text
 - WebGL-less browsers get a readable fallback
 
-## 17. Screenshots
-
-Captured from the production build in headless Chromium with software WebGL (SwiftShader), so they show the **LOW** quality tier — no bloom or depth of field. Real GPUs render HIGH/MEDIUM.
-
-|                                                            |                                                              |
-| ---------------------------------------------------------- | ------------------------------------------------------------ |
-| ![Intro](docs/screenshots/d-00-intro.jpg)                  | ![Collection showcase](docs/screenshots/i-showcase.jpg)      |
-| ![Exploded watch](docs/screenshots/d-exploded-0.5.jpg)     | ![Component inspect](docs/screenshots/i-exploded-select.jpg) |
-| ![Movement](docs/screenshots/d-movement-0.5.jpg)           | ![Materials](docs/screenshots/d-materials-0.5.jpg)           |
-| ![The Art of Time](docs/screenshots/d-time-0.5.jpg)        | ![Configurator](docs/screenshots/d-configurator-0.5.jpg)     |
-| ![Reveal](docs/screenshots/i-config-reveal.jpg)            | ![Signature](docs/screenshots/d-signature-0.5.jpg)           |
-| ![Craftsmanship](docs/screenshots/d-craftsmanship-0.5.jpg) | ![Finale](docs/screenshots/d-finale-0.5.jpg)                 |
-
-Mobile (390×844): [intro](docs/screenshots/m-00-intro.jpg) · [configurator](docs/screenshots/m-configurator-0.5.jpg) · [signature](docs/screenshots/m-signature-0.5.jpg)
-
-## 18. Cinematic showreel
-
-The CHRONOS showcase film is presented in **16:9 widescreen**.
-
-<video width="100%" controls playsinline preload="metadata">
-  <source src="https://raw.githubusercontent.com/ver-dev9/chronos-luxury-watch/main/chronos-showreel-16x9.mp4" type="video/mp4">
-  Your browser does not support embedded video. [Watch the CHRONOS showreel](https://github.com/ver-dev9/chronos-luxury-watch/blob/main/chronos-showreel-16x9.mp4).
-</video>
-
-[Open or download the 16:9 showreel](https://github.com/ver-dev9/chronos-luxury-watch/blob/main/chronos-showreel-16x9.mp4).
-
-## 19. Demo link
+## 18. Demo link
 
 **Live:** https://ver-dev9.github.io/chronos-luxury-watch/
 
-## 20. Credits
+## 19. Credits
 
 Concept, design & development — [ver-dev9](https://github.com/ver-dev9).
 Simplex noise GLSL — Ashima Arts / Stefan Gustavson (MIT).
 All 3D models, textures and sounds are original and procedurally generated.
 
-## 21. License
+## 20. License
 
 License to be confirmed by the author. Until a `LICENSE` file is added, all rights are reserved.
 
